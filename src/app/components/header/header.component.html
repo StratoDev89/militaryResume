@@ -1,0 +1,54 @@
+<main>
+  <h1>Resume Header</h1>
+
+  <form [formGroup]="form" (ngSubmit)="addHeader()">
+    <fieldset>
+      <label for="">First Name*</label>
+      <input type="text" formControlName="firstName" />
+    </fieldset>
+
+    <fieldset>
+      <label for="">Last Name*</label>
+      <input type="text" formControlName="lastName" />
+    </fieldset>
+
+    <fieldset>
+      <label for="">Street*</label>
+      <input type="text" formControlName="street" />
+    </fieldset>
+
+    <fieldset>
+      <label for="">City*</label>
+      <input type="text" formControlName="city" />
+    </fieldset>
+
+    <fieldset>
+      <label for="">State</label>
+      <input type="text" formControlName="state" />
+    </fieldset>
+
+    <fieldset>
+      <label for="">Zip Code*</label>
+      <input type="text" formControlName="zipCode" />
+    </fieldset>
+
+    <fieldset>
+      <label for="">Email*</label>
+      <input type="text" formControlName="email" />
+    </fieldset>
+
+    <fieldset>
+      <label for="">Phone*</label>
+      <input type="text" formControlName="phone" />
+    </fieldset>
+
+    <div class="btn-container">
+      <!-- <button type="submit">Add Header</button> -->
+      <app-btn>Add Header</app-btn>
+    </div>
+  </form>
+</main>
+
+@if (headerFormInfo) {
+  <app-form [headerFormInfo]="headerFormInfo"></app-form>
+}

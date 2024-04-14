@@ -1,0 +1,24 @@
+<main>
+  <app-btn (onClick)="toggleSumary()">add / edit professional summary</app-btn>
+
+  @if (showSummary()) {
+    <form [formGroup]="summaryForm" (ngSubmit)="saveSummary()">
+      <textarea
+        name=""
+        id=""
+        cols="30"
+        rows="10"
+        formControlName="summary"
+      ></textarea>
+
+      <app-btn>save summary</app-btn>
+    </form>
+  }
+
+  @if (summary()) {
+    <div class="summary-container">
+      <h3 class="highlight">Professional Summary</h3>
+      <p>{{ summary() }}</p>
+    </div>
+  }
+</main>

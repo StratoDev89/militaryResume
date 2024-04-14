@@ -1,0 +1,105 @@
+<div class="experience-container">
+  <h3 class="highlight">experience</h3>
+  <h4>{{ work.position }}</h4>
+  <h5>{{ work.organization }}</h5>
+  <p>
+    {{ work.address }}, {{ work.city }}, {{ work.state }}
+    {{ work.zipCode }}
+  </p>
+  <p>
+    <strong>Dates:</strong> {{ work.startDate }} - {{ work.endDate }} |
+    <strong>Salary:</strong> ${{ work.salary }} -
+    <strong>Works per week: </strong>{{ work.hours }}
+  </p>
+  <p class="skills">
+    {{ work.skills }}
+  </p>
+
+  <div class="edit-save-container">
+    <app-btn (onClick)="editToggle()">Edit</app-btn>
+    <app-btn (onClick)="deleteWorkExperience(work.id)">Delete</app-btn>
+  </div>
+</div>
+
+@if (isEdition()) {
+  <div class="edit-form">
+    <form [formGroup]="form">
+      <fieldset>
+        <label for="position">position</label>
+        <input type="text" [value]="work.position" formControlName="position" />
+      </fieldset>
+
+      <fieldset>
+        <label for="organization">organization</label>
+        <input
+          type="text"
+          [value]="work.organization"
+          formControlName="organization"
+        />
+      </fieldset>
+
+      <fieldset>
+        <label for="address">address</label>
+        <input type="text" [value]="work.address" formControlName="address" />
+      </fieldset>
+
+      <fieldset>
+        <label for="city">city</label>
+        <input type="text" [value]="work.city" formControlName="city" />
+      </fieldset>
+
+      <fieldset>
+        <label for="state">state</label>
+        <input type="text" [value]="work.state" formControlName="state" />
+      </fieldset>
+
+      <fieldset>
+        <label for="zipCode">zipCode</label>
+        <input type="text" [value]="work.zipCode" formControlName="zipCode" />
+      </fieldset>
+
+      <fieldset>
+        <label for="startDate">Start Date</label>
+        <input
+          type="text"
+          [value]="work.startDate"
+          formControlName="startDate"
+        />
+      </fieldset>
+
+      <fieldset>
+        <label for="endDate">End Date</label>
+        <input type="text" [value]="work.endDate" formControlName="endDate" />
+      </fieldset>
+
+      <fieldset>
+        <label for="salary">Salary</label>
+        <input type="text" [value]="work.salary" formControlName="salary" />
+      </fieldset>
+
+      <fieldset>
+        <label for="hours">Hours per Week</label>
+        <input type="text" [value]="work.hours" formControlName="hours" />
+      </fieldset>
+
+      <fieldset
+        style="grid-column: span 4; grid-column-start: 1; grid-column-end: -1"
+      >
+        <label for="skills">Related Skills</label>
+        <textarea
+          name="skills"
+          id=""
+          cols="30"
+          rows="10"
+          [value]="work.skills"
+          formControlName="skills"
+        ></textarea>
+      </fieldset>
+
+      <div class="save-close-container">
+        <app-btn (onClick)="updateWork()">Save</app-btn>
+        <app-btn (onClick)="editToggle()">Close</app-btn>
+      </div>
+    </form>
+  </div>
+}

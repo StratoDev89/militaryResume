@@ -1,0 +1,23 @@
+<main id="resume">
+  <h1>Base Resume</h1>
+
+  <header>
+    <h2>{{ headerFormInfo.firstName }} {{ headerFormInfo.lastName }}</h2>
+    <hr />
+    <h3>
+      {{ headerFormInfo.street }} {{ headerFormInfo.city }},
+      {{ headerFormInfo.state }} {{ headerFormInfo.zipCode }} |
+      {{ headerFormInfo.phone }} | {{ headerFormInfo.email }}
+    </h3>
+  </header>
+
+  <div class="summary">
+    <app-summary />
+  </div>
+
+  <div class="experience">
+    <app-experience />
+  </div>
+</main>
+
+<button (click)="generatePdf()">Generate PDF</button>

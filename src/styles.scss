@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+}
+
+fieldset {
+  text-align: start;
+  border: none;
+}
+
+label {
+  text-transform: capitalize;
+  display: block;
+}
+
+input {
+  padding: 0.8rem;
+  width: 100%;
+}
+
+textarea {
+  border-radius: 10px;
+  border: none;
+  width: 100%;
+  resize: none;
+  padding: 0.8rem;
+}
+
+.highlight {
+  color: #0d3b84;
+  font-weight: 700;
+}

@@ -1,0 +1,45 @@
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: fit-content;
+  padding: 3rem 0;
+  // background-color: red;
+
+  header {
+    width: 80%;
+    // background-color: lightgreen;
+
+    h2 {
+      text-transform: capitalize;
+      font-size: 2em;
+    }
+
+    hr {
+      height: 3px;
+      background-color: black;
+    }
+
+    h3 {
+      text-transform: capitalize;
+    }
+  }
+}
+
+form {
+  width: 80%;
+  height: 50vh;
+}
+
+
+.summary {
+  width: 80%;
+  text-align: center;
+}
+
+.experience {
+  width: 80%;
+  text-align: center;
+}

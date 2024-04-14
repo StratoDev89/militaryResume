@@ -1,0 +1,88 @@
+<main>
+  <app-btn (onClick)="toggleForm()">add work experience</app-btn>
+
+  @if (showForm()) {
+    <form [formGroup]="form" (ngSubmit)="addWorkExperience()">
+      <fieldset>
+        <label for="position">position*</label>
+        <input type="text" formControlName="position" />
+      </fieldset>
+
+      <fieldset>
+        <label for="organization">organization*</label>
+        <input type="text" formControlName="organization" />
+      </fieldset>
+
+      <fieldset>
+        <label for="address">address*</label>
+        <input type="text" formControlName="address" />
+      </fieldset>
+
+      <div class="three-col">
+        <fieldset>
+          <label for="city">city*</label>
+          <input type="text" formControlName="city" />
+        </fieldset>
+
+        <fieldset>
+          <label for="state">state*</label>
+          <input type="text" formControlName="state" />
+        </fieldset>
+
+        <fieldset>
+          <label for="zipCode">zipCode*</label>
+          <input type="text" formControlName="zipCode" />
+        </fieldset>
+      </div>
+
+      <div class="four-col">
+        <fieldset>
+          <label for="startDate">startDate*</label>
+          <input type="text" formControlName="startDate" />
+        </fieldset>
+
+        <fieldset>
+          <label for="endDate">endDate*</label>
+          <input type="text" formControlName="endDate" />
+        </fieldset>
+
+        <fieldset>
+          <label for="hours">hours*</label>
+          <input type="text" formControlName="hours" />
+        </fieldset>
+
+        <fieldset>
+          <label for="salary">salary*</label>
+          <input type="text" formControlName="salary" />
+        </fieldset>
+      </div>
+
+      <fieldset>
+        <label for="skills">Duties, Accomplishments and Related Skills:*</label>
+        <textarea
+          name="skills"
+          id=""
+          cols="30"
+          rows="10"
+          formControlName="skills"
+        ></textarea>
+      </fieldset>
+
+      <div>
+        <app-btn>save experience</app-btn>
+      </div>
+    </form>
+  }
+
+  @if (workExperiences().length >= 1) {
+    <div style="width: 100%">
+      @for (work of workExperiences(); track work.id) {
+        <app-work
+          [work]="work"
+          (deleteClick)="deleteWorkExperience($event)"
+          (updateClick)="updateWorkExperience($event)"
+        />
+      }
+    </div>
+  }
+</main>

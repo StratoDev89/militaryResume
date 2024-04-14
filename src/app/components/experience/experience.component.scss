@@ -1,0 +1,49 @@
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 1rem;
+  align-items: center;
+  width: 100%;
+  margin-top: 1rem;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 0.5rem;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow:
+      20px 20px 60px #bebebe,
+      -20px -20px 60px #ffffff;
+    width: 100%;
+
+    fieldset {
+      width: 100%;
+    }
+
+    .three-col {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      column-gap: 0.5rem;
+      width: 100%;
+    }
+
+    .four-col {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      column-gap: 0.5rem;
+      width: 100%;
+    }
+
+    textarea {
+      border: 1px solid black;
+    }
+  }
+
+
+}
