@@ -1,0 +1,32 @@
+<main>
+  <app-btn (onClick)="toggleForm()">add / edit awards section</app-btn>
+
+  @if (showForm()) {
+    <app-divider />
+    <form
+      [formGroup]="form"
+      class="primary-form"
+      (ngSubmit)="addAward()"
+    >
+      <fieldset>
+        <textarea
+          name="award"
+          cols="30"
+          rows="10"
+          formControlName="award"
+        >
+        </textarea>
+      </fieldset>
+
+      <app-small-divider />
+
+      <app-btn type="save">save and finish awards</app-btn>
+    </form>
+    <app-divider />
+  }
+
+  @if (awards()) {
+    <h3 class="highlight">awards</h3>
+    <p>{{ awards()?.award }}</p>
+  }
+</main>

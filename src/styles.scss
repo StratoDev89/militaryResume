@@ -14,10 +14,12 @@ fieldset {
 label {
   text-transform: capitalize;
   display: block;
+  padding: 0.5rem;
 }
 
-input {
-  padding: 0.8rem;
+input,
+select {
+  padding: 0.5rem;
   width: 100%;
 }
 
@@ -32,4 +34,31 @@ textarea {
 .highlight {
   color: #0d3b84;
   font-weight: 700;
+  text-transform: capitalize;
+  text-align: start;
+}
+
+.basic-form {
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow:
+    20px 20px 60px #bebebe,
+    -20px -20px 60px #ffffff;
+  width: 100%;
+  font-size: 0.9em;
+}
+
+.section-container {
+  text-align: start;
+  width: 100%;
+}
+
+p {
+  font-size: 0.9em;
+  text-transform: capitalize;
+}
+
+tr {
+  font-size: 0.9em;
+  text-transform: capitalize;
 }

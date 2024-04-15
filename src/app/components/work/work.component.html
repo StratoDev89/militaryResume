@@ -17,7 +17,7 @@
 
   <div class="edit-save-container">
     <app-btn (onClick)="editToggle()">Edit</app-btn>
-    <app-btn (onClick)="deleteWorkExperience(work.id)">Delete</app-btn>
+    <app-btn (onClick)="deleteWorkExperience(work.id)" type="danger">Delete</app-btn>
   </div>
 </div>
 
@@ -50,7 +50,13 @@
 
       <fieldset>
         <label for="state">state</label>
-        <input type="text" [value]="work.state" formControlName="state" />
+        <select formControlName="state">
+          @for (state of states; track state) {
+            <option [value]="state">
+              {{ state }}
+            </option>
+          }
+        </select>
       </fieldset>
 
       <fieldset>

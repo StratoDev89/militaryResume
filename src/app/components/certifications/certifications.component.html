@@ -1,0 +1,32 @@
+<main>
+  <app-btn (onClick)="toggleForm()">add / edit certifications section</app-btn>
+
+  @if (showForm()) {
+    <app-divider />
+    <form
+      [formGroup]="form"
+      class="primary-form"
+      (ngSubmit)="addCertification()"
+    >
+      <fieldset>
+        <textarea
+          name="certification"
+          cols="30"
+          rows="10"
+          formControlName="certification"
+        >
+        </textarea>
+      </fieldset>
+
+      <app-small-divider />
+
+      <app-btn type="save">save certifications</app-btn>
+    </form>
+    <app-divider />
+  }
+
+  @if (certifications()) {
+    <h3 class="highlight">certifications</h3>
+    <p>{{ certifications()?.certification }}</p>
+  }
+</main>

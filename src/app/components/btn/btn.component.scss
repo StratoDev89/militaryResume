@@ -4,10 +4,33 @@ button {
   border-radius: 5px;
   border: none;
   cursor: pointer;
-  background-color: #8AB4F8;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
+}
 
-  &:hover {
-    background-color: #6fa1f0;
-  }
+.basic {
+  transition: all 0s ease;
+  border: 1px solid #3868b5;
+  background-color: transparent;
+  color: #3868b5;
+}
+
+.basic:hover {
+  font-weight: bold;
+}
+
+.danger {
+  background-color: rgba(232, 25, 25, 0.906);
+  color: whitesmoke;
+}
+
+.danger:hover {
+  background-color: rgba(232, 25, 25, 0.74);
+}
+
+.save {
+  background-color: #3868b5;
+  color: whitesmoke;
+}
+.save:hover {
+  background-color: #3868b5ea;
 }

@@ -2,22 +2,19 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  row-gap: 1rem;
   align-items: center;
   width: 100%;
-  margin-top: 1rem;
 
   form {
-  border-radius: 10px;
+    border-radius: 10px;
 
     width: 100%;
-
   }
 
   textarea {
     box-shadow:
-    10px 10px 20px #bebebe,
-    -1px -1px 1px #ffffff;
+      10px 10px 20px #bebebe,
+      -1px -1px 1px #ffffff;
   }
 
   .summary-container {
@@ -25,7 +22,7 @@ main {
     width: 100%;
 
     p {
-      font-size: .9em;
+      font-size: 0.9em;
     }
   }
 }

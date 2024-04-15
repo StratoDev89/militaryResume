@@ -1,0 +1,61 @@
+main {
+  width: 100%;
+
+  .education-form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+
+    fieldset:nth-child(1) {
+      width: 100%;
+      grid-column: 1 / span 3;
+    }
+
+    .btn-container {
+      grid-column: 1 / span 3;
+    }
+  }
+}
+
+table {
+  width: 100%;
+  border: 1px solid gray;
+  border-collapse: collapse;
+
+  th {
+    padding: 0.5rem;
+    background-color: rgba(128, 128, 128, 0.495);
+    text-transform: capitalize;
+  }
+  td {
+    width: 25%;
+    padding: 0.5rem;
+    text-align: center;
+    text-transform: capitalize;
+  }
+}
+
+.edition-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  width: 100%;
+  border: 1px solid black;
+  padding: 1rem;
+  font-size: 0.8em;
+
+  div:not(:last-child) {
+    text-transform: capitalize;
+    padding: 0.3rem;
+    background-color: rgba(128, 128, 128, 0.546);
+  }
+
+  .edition-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 1rem;
+    width: 100%;
+    grid-column: 1 / span 2;
+    text-align: end;
+  }
+}

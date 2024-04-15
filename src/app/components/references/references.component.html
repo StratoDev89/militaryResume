@@ -1,0 +1,103 @@
+<main>
+  <app-btn (onClick)="toggleForm()">add references</app-btn>
+
+  @if (showForm()) {
+    <app-divider />
+    <form
+      class="basic-form education-form"
+      [formGroup]="form"
+      (ngSubmit)="addReference()"
+    >
+      <fieldset>
+        <label for="name">name*</label>
+        <input type="text" formControlName="name" />
+      </fieldset>
+
+      <fieldset>
+        <label for="employer">employer*</label>
+        <input type="text" formControlName="employer" />
+      </fieldset>
+
+      <fieldset>
+        <label for="title">title*</label>
+        <input type="text" formControlName="title" />
+      </fieldset>
+
+      <fieldset>
+        <label for="phone">phone</label>
+        <input type="text" formControlName="phone" />
+      </fieldset>
+
+      <fieldset>
+        <label for="email">email*</label>
+        <input type="text" formControlName="email" />
+      </fieldset>
+
+      <div class="btn-container">
+        <app-btn type="save">save reference</app-btn>
+      </div>
+    </form>
+
+    <app-divider />
+
+    @for (reference of references(); track reference.id) {
+      <div class="edition-form">
+        <div>
+          <h3>{{ reference.name }}</h3>
+        </div>
+
+        <div>
+          <h3>{{ reference.employer }}</h3>
+        </div>
+
+        <div>
+          <h3>{{ reference.title }}</h3>
+        </div>
+
+        <div>
+          <h3>{{ reference.phone }}</h3>
+        </div>
+
+        <div>
+          <h3>{{ reference.email }}</h3>
+        </div>
+
+        <div class="edition-btn-container">
+          <app-btn (onClick)="updateReference(reference)" type="save"
+            >update reference</app-btn
+          >
+          <app-btn (onClick)="deleteReference(reference.id)" type="danger"
+            >delete reference</app-btn
+          >
+        </div>
+      </div>
+      <app-divider />
+    }
+  }
+
+  @if (references().length >= 1) {
+    <div class="section-container">
+      <h3 class="highlight">references</h3>
+
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>employer</th>
+          <th>title</th>
+          <th>phone</th>
+          <th>email</th>
+        </tr>
+
+        @for (reference of references(); track reference.id) {
+          <tr>
+            <td>{{ reference.name }}</td>
+            <td>{{ reference.employer }}</td>
+            <td>{{ reference.title }}</td>
+            <td>{{ reference.phone }}</td>
+            <td>{{ reference.email }}</td>
+          </tr>
+        }
+      </table>
+    </div>
+  }
+</main>

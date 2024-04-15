@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
-import { workExperience, FormField } from '../../interfaces/interfaces';
+import { Component, EventEmitter, Input, Output, inject, signal } from '@angular/core';
+import { WorkExperience, FormField } from '../../interfaces/interfaces';
 import { BtnComponent } from '../btn/btn.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { StatesService } from '../../services/states.service';
 
 @Component({
   selector: 'app-work',
@@ -11,11 +12,14 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './work.component.scss',
 })
 export class WorkComponent {
-  @Input({ required: true }) work!: workExperience;
-  @Output() deleteClick = new EventEmitter<string>();
-  @Output() updateClick = new EventEmitter<workExperience>();
+  states = inject(StatesService).getStates();
 
-  workUpdated = signal<workExperience | null>(null);
+  @Input({ required: true }) work!: WorkExperience;
+  @Output() deleteClick = new EventEmitter<string>();
+  @Output() updateClick = new EventEmitter<WorkExperience>();
+
+  workUpdated = signal<WorkExperience | null>(null);
+  isEdition = signal(false);
 
   form = new FormGroup({
     position: new FormControl(),
@@ -31,7 +35,9 @@ export class WorkComponent {
     skills: new FormControl(''),
   });
 
-  isEdition = signal(false);
+  ngOnInit(): void {
+    this.form.patchValue(this.work);
+  }
 
   editToggle() {
     this.isEdition.update((prev) => !prev);
@@ -40,7 +46,7 @@ export class WorkComponent {
   updateWork() {
     this.editToggle();
 
-    const workUpdated: workExperience = {
+    const workUpdated: WorkExperience = {
       id: this.work.id,
       position: '',
       organization: '',
@@ -56,10 +62,8 @@ export class WorkComponent {
     };
 
     Object.keys(this.form.controls).forEach((control) => {
-      workUpdated[control as keyof workExperience] =
+      workUpdated[control as keyof WorkExperience] =
         this.form.get(control)?.value;
-
-        // this.work[control as keyof workExperience] = ''
     });
 
     this.updateClick.emit(workUpdated);
@@ -67,9 +71,5 @@ export class WorkComponent {
 
   deleteWorkExperience(id: string) {
     this.deleteClick.emit(id);
-  }
-
-  ngOnInit(): void {
-    this.form.patchValue(this.work);
   }
 }

@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { workExperience } from '../../interfaces/interfaces';
+import { WorkExperience } from '../../interfaces/interfaces';
 import {
   FormControl,
   FormGroup,
@@ -9,20 +9,24 @@ import {
 import { UuidService } from '../../services/uuid.service';
 import { BtnComponent } from '../btn/btn.component';
 import { WorkComponent } from '../work/work.component';
+import { StorageService } from '../../services/storage.service';
+import { StatesService } from '../../services/states.service';
+import { DividerComponent } from '../divider/divider.component';
 
 @Component({
   selector: 'app-experience',
   standalone: true,
-  imports: [ReactiveFormsModule, BtnComponent, WorkComponent],
+  imports: [ReactiveFormsModule, BtnComponent, WorkComponent, DividerComponent],
   templateUrl: './experience.component.html',
   styleUrl: './experience.component.scss',
 })
 export class ExperienceComponent {
   uuidService = inject(UuidService);
+  storageServ = inject(StorageService);
+  states = inject(StatesService).getStates();
   showForm = signal(false);
-  isEdition = signal(false);
-
-  workExperiences = signal<workExperience[]>([]);
+  storageVariable = 'workExperience';
+  workExperiences = signal<WorkExperience[]>([]);
 
   form = new FormGroup({
     position: new FormControl('', [Validators.required]),
@@ -39,10 +43,10 @@ export class ExperienceComponent {
   });
 
   ngOnInit(): void {
-    const savedExperiences = localStorage.getItem('workExperience');
+    const savedExperiences = this.storageServ.getStorage(this.storageVariable);
 
     if (savedExperiences) {
-      const experiences = JSON.parse(savedExperiences) as workExperience[];
+      const experiences = JSON.parse(savedExperiences) as WorkExperience[];
       this.workExperiences.set(experiences);
     }
   }
@@ -53,10 +57,6 @@ export class ExperienceComponent {
 
   addWorkExperience() {
     this.showForm.update((prev) => !prev);
-
-    if (this.form.invalid) {
-      console.log('invalid');
-    }
 
     if (this.form.valid) {
       const experience = {
@@ -75,11 +75,7 @@ export class ExperienceComponent {
       };
 
       this.workExperiences.update((prev) => [...prev, experience]);
-
-      localStorage.setItem(
-        'workExperience',
-        JSON.stringify(this.workExperiences()),
-      );
+      this.storageServ.setStorage(this.storageVariable, this.workExperiences());
     }
   }
 
@@ -88,23 +84,15 @@ export class ExperienceComponent {
       (item) => item.id !== id,
     );
     this.workExperiences.set(newExperiences);
-
-    localStorage.setItem('workExperience', JSON.stringify(newExperiences));
+    this.storageServ.setStorage(this.storageVariable, this.workExperiences());
   }
 
-  updateWorkExperience(work: workExperience) {
+  updateWorkExperience(work: WorkExperience) {
     const index = this.workExperiences().findIndex(
       (item) => item.id === work.id,
     );
+
     this.workExperiences()[index] = work;
-
-    localStorage.setItem(
-      'workExperience',
-      JSON.stringify(this.workExperiences()),
-    );
-  }
-
-  editToggle() {
-    this.isEdition.update((prev) => !prev);
+    this.storageServ.setStorage(this.storageVariable, this.workExperiences());
   }
 }

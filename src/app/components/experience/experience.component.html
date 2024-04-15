@@ -1,8 +1,14 @@
 <main>
-  <app-btn (onClick)="toggleForm()">add work experience</app-btn>
+  <app-btn (onClick)="toggleForm()">add work experience </app-btn>
 
   @if (showForm()) {
-    <form [formGroup]="form" (ngSubmit)="addWorkExperience()">
+    <app-divider />
+
+    <form
+      class="basic-form"
+      [formGroup]="form"
+      (ngSubmit)="addWorkExperience()"
+    >
       <fieldset>
         <label for="position">position*</label>
         <input type="text" formControlName="position" />
@@ -26,28 +32,34 @@
 
         <fieldset>
           <label for="state">state*</label>
-          <input type="text" formControlName="state" />
+          <select formControlName="state">
+            @for (state of states; track state) {
+              <option [value]="state">
+                {{ state }}
+              </option>
+            }
+          </select>
         </fieldset>
 
         <fieldset>
-          <label for="zipCode">zipCode*</label>
+          <label for="zipCode">zip Code*</label>
           <input type="text" formControlName="zipCode" />
         </fieldset>
       </div>
 
       <div class="four-col">
         <fieldset>
-          <label for="startDate">startDate*</label>
+          <label for="startDate">start Date*</label>
           <input type="text" formControlName="startDate" />
         </fieldset>
 
         <fieldset>
-          <label for="endDate">endDate*</label>
+          <label for="endDate">end Date*</label>
           <input type="text" formControlName="endDate" />
         </fieldset>
 
         <fieldset>
-          <label for="hours">hours*</label>
+          <label for="hours">hours per week*</label>
           <input type="text" formControlName="hours" />
         </fieldset>
 
@@ -69,11 +81,12 @@
       </fieldset>
 
       <div>
-        <app-btn>save experience</app-btn>
+        <app-btn type="save">save experience</app-btn>
       </div>
     </form>
-  }
 
+    <app-divider />
+  }
   @if (workExperiences().length >= 1) {
     <div style="width: 100%">
       @for (work of workExperiences(); track work.id) {

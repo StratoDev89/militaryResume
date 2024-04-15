@@ -1,29 +1,29 @@
 main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   width: 100%;
   height: fit-content;
   padding: 3rem 0;
-  // background-color: red;
 
-  header {
+  .section-header {
     width: 80%;
-    // background-color: lightgreen;
+    margin: 0 auto;
 
-    h2 {
-      text-transform: capitalize;
-      font-size: 2em;
-    }
+    header {
+      width: 100%;
 
-    hr {
-      height: 3px;
-      background-color: black;
-    }
+      h2 {
+        text-transform: capitalize;
+        font-size: 2em;
+      }
 
-    h3 {
-      text-transform: capitalize;
+      hr {
+        height: 3px;
+        background-color: black;
+        width: 100%;
+      }
+
+      h3 {
+        text-transform: capitalize;
+      }
     }
   }
 }
@@ -31,15 +31,4 @@ main {
 form {
   width: 80%;
   height: 50vh;
-}
-
-
-.summary {
-  width: 80%;
-  text-align: center;
-}
-
-.experience {
-  width: 80%;
-  text-align: center;
 }

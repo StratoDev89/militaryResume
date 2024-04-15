@@ -1,0 +1,98 @@
+<main>
+  <app-btn (onClick)="toggleForm()">add education</app-btn>
+
+  @if (showForm()) {
+    <app-divider />
+    <form
+      class="basic-form education-form"
+      [formGroup]="form"
+      (ngSubmit)="addEducation()"
+    >
+      <fieldset>
+        <label for="degree">Degree or Diploma Name*</label>
+        <input type="text" formControlName="degree" />
+      </fieldset>
+
+      <fieldset>
+        <label for="acronym">acronym*</label>
+        <input type="text" formControlName="acronym" />
+      </fieldset>
+
+      <fieldset>
+        <label for="yearGraduated">year graduated*</label>
+        <input type="text" formControlName="yearGraduated" />
+      </fieldset>
+
+      <fieldset>
+        <label for="levelAttained">level attained*</label>
+        <select formControlName="levelAttained">
+          @for (level of levels; track level) {
+            <option [value]="level">
+              {{ level }}
+            </option>
+          }
+        </select>
+      </fieldset>
+
+      <div class="btn-container">
+        <app-btn>save education</app-btn>
+      </div>
+    </form>
+
+    <app-divider />
+
+    @for (education of educations(); track education.id) {
+      <div class="edition-form">
+        <div>
+          <h3>{{ education.degree }}</h3>
+        </div>
+
+        <div>
+          <h3>{{ education.acronym }}</h3>
+        </div>
+
+        <div>
+          <h3>{{ education.yearGraduated }}</h3>
+        </div>
+
+        <div>
+          <h3>{{ education.levelAttained }}</h3>
+        </div>
+
+        <div class="edition-btn-container">
+          <app-btn (onClick)="updateEducation(education)" type="save"
+            >update education</app-btn
+          >
+          <app-btn (onClick)="deleteEducation(education.id)" type="danger"
+            >delete education</app-btn
+          >
+        </div>
+      </div>
+      <app-divider />
+    }
+  }
+
+  @if (educations().length >= 1) {
+    <div class="section-container">
+      <h3 class="highlight">education</h3>
+
+      <table>
+        <tr>
+          <th>Degree</th>
+          <th>Graduation</th>
+          <th>School/Program</th>
+          <th>Level Attained</th>
+        </tr>
+
+        @for (education of educations(); track education.id) {
+          <tr>
+            <td>{{ education.degree }}</td>
+            <td>{{ education.yearGraduated }}</td>
+            <td>{{ education.acronym }}</td>
+            <td>{{ education.levelAttained }}</td>
+          </tr>
+        }
+      </table>
+    </div>
+  }
+</main>

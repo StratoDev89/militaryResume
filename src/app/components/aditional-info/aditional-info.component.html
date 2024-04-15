@@ -1,0 +1,32 @@
+<main>
+  <app-btn (onClick)="toggleForm()">add / edit additional information</app-btn>
+
+  @if (showForm()) {
+    <app-divider />
+    <form
+      [formGroup]="form"
+      class="primary-form"
+      (ngSubmit)="addInfo()"
+    >
+      <fieldset>
+        <textarea
+          name="award"
+          cols="30"
+          rows="10"
+          formControlName="additionalInfo"
+        >
+        </textarea>
+      </fieldset>
+
+      <app-small-divider />
+
+      <app-btn type="save">save and finish additional info</app-btn>
+    </form>
+    <app-divider />
+  }
+
+  @if (additionalInfo()) {
+    <h3 class="highlight">additional information</h3>
+    <p>{{ additionalInfo()?.additionalInfo }}</p>
+  }
+</main>

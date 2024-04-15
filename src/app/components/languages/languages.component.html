@@ -1,0 +1,108 @@
+<main>
+  <app-btn (onClick)="toggleForm()">add languages</app-btn>
+
+  @if (showForm()) {
+    <app-divider />
+    <form
+      class="basic-form education-form"
+      [formGroup]="form"
+      (ngSubmit)="addLanguage()"
+    >
+      <fieldset>
+        <label for="language">language*</label>
+        <input type="text" formControlName="language" />
+      </fieldset>
+
+      <fieldset>
+        <label for="spoken">spoken*</label>
+        <select formControlName="spoken">
+          @for (level of levels; track level) {
+            <option [value]="level">
+              {{ level }}
+            </option>
+          }
+        </select>
+      </fieldset>
+
+      <fieldset>
+        <label for="read">read*</label>
+        <select formControlName="read">
+          @for (level of levels; track level) {
+            <option [value]="level">
+              {{ level }}
+            </option>
+          }
+        </select>
+      </fieldset>
+
+      <fieldset>
+        <label for="written">written*</label>
+        <select formControlName="written">
+          @for (level of levels; track level) {
+            <option [value]="level">
+              {{ level }}
+            </option>
+          }
+        </select>
+      </fieldset>
+
+      <div class="btn-container">
+        <app-btn type="save">save and finish languages</app-btn>
+      </div>
+    </form>
+
+    <app-divider />
+
+    @for (language of languages(); track language.id) {
+      <div class="edition-form">
+        <div>
+          <h3>{{ language.language }}</h3>
+        </div>
+
+        <div>
+          <h3>{{ language.spoken }}</h3>
+        </div>
+
+        <div>
+          <h3>{{ language.read }}</h3>
+        </div>
+
+        <div>
+          <h3>{{ language.written }}</h3>
+        </div>
+
+        <div class="edition-btn-container">
+          <app-btn>update language</app-btn>
+          <app-btn (onClick)="deleteLanguage(language.id)" type="danger"
+            >delete language</app-btn
+          >
+        </div>
+      </div>
+      <app-divider />
+    }
+  }
+
+  @if (languages().length >= 1) {
+    <div class="section-container">
+      <h3 class="highlight">languages</h3>
+
+      <table>
+        <tr>
+          <th>language</th>
+          <th>spoken</th>
+          <th>read</th>
+          <th>written</th>
+        </tr>
+
+        @for (language of languages(); track language.id) {
+          <tr>
+            <td>{{ language.language }}</td>
+            <td>{{ language.spoken }}</td>
+            <td>{{ language.read }}</td>
+            <td>{{ language.written }}</td>
+          </tr>
+        }
+      </table>
+    </div>
+  }
+</main>

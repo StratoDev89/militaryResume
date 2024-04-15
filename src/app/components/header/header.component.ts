@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -8,6 +8,7 @@ import {
 import { FormComponent } from '../form/form.component';
 import { HeaderFormInfo } from '../../interfaces/interfaces';
 import { BtnComponent } from '../btn/btn.component';
+import { StatesService } from '../../services/states.service';
 
 @Component({
   selector: 'app-header',
@@ -18,6 +19,7 @@ import { BtnComponent } from '../btn/btn.component';
 })
 export class HeaderComponent {
   headerFormInfo: HeaderFormInfo | null = null;
+  states = inject(StatesService).getStates();
 
   form = new FormGroup({
     firstName: new FormControl('', [Validators.required]),

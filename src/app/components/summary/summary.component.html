@@ -2,6 +2,8 @@
   <app-btn (onClick)="toggleSumary()">add / edit professional summary</app-btn>
 
   @if (showSummary()) {
+    <app-divider />
+
     <form [formGroup]="summaryForm" (ngSubmit)="saveSummary()">
       <textarea
         name=""
@@ -11,8 +13,12 @@
         formControlName="summary"
       ></textarea>
 
-      <app-btn>save summary</app-btn>
+      <app-small-divider />
+
+      <app-btn type="save">save summary</app-btn>
     </form>
+
+    <app-divider />
   }
 
   @if (summary()) {

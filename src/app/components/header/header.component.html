@@ -24,7 +24,13 @@
 
     <fieldset>
       <label for="">State</label>
-      <input type="text" formControlName="state" />
+      <select formControlName="state">
+        @for (state of states; track state) {
+          <option [value]="state">
+            {{ state }}
+          </option>
+        }
+      </select>
     </fieldset>
 
     <fieldset>
@@ -43,8 +49,7 @@
     </fieldset>
 
     <div class="btn-container">
-      <!-- <button type="submit">Add Header</button> -->
-      <app-btn>Add Header</app-btn>
+      <app-btn type="save">Add Header</app-btn>
     </div>
   </form>
 </main>
