@@ -59,3 +59,39 @@ table {
     text-align: end;
   }
 }
+
+
+.update-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.498);
+
+  .update-form {
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10px;
+
+    fieldset:nth-child(1) {
+      width: 100%;
+      grid-column: 1 / span 3;
+    }
+
+    .edit-btn-container {
+      display: flex;
+      align-items: flex-end;
+      column-gap: 1rem;
+      margin-top: 0.5rem;
+      grid-column-start: 4;
+    }
+  }
+}

@@ -53,6 +53,7 @@
 
     <app-divider />
 
+    <!-- EDITION LIST -->
     @for (language of languages(); track language.id) {
       <div class="edition-form">
         <div>
@@ -72,9 +73,11 @@
         </div>
 
         <div class="edition-btn-container">
-          <app-btn>update language</app-btn>
+          <app-btn (onClick)="setEditLanguage(language)" type="save"
+            >Edit</app-btn
+          >
           <app-btn (onClick)="deleteLanguage(language.id)" type="danger"
-            >delete language</app-btn
+            >delete</app-btn
           >
         </div>
       </div>
@@ -106,3 +109,53 @@
     </div>
   }
 </main>
+
+<!-- UPDATE SECTION -->
+@if (languageToEdit()) {
+  <div class="update-container">
+    <form [formGroup]="form" class="update-form">
+      <fieldset>
+        <label for="language">language*</label>
+        <input type="text" formControlName="language" />
+      </fieldset>
+
+      <fieldset>
+        <label for="spoken">spoken*</label>
+        <select formControlName="spoken">
+          @for (level of levels; track level) {
+            <option [value]="level">
+              {{ level }}
+            </option>
+          }
+        </select>
+      </fieldset>
+
+      <fieldset>
+        <label for="read">read*</label>
+        <select formControlName="read">
+          @for (level of levels; track level) {
+            <option [value]="level">
+              {{ level }}
+            </option>
+          }
+        </select>
+      </fieldset>
+
+      <fieldset>
+        <label for="written">written*</label>
+        <select formControlName="written">
+          @for (level of levels; track level) {
+            <option [value]="level">
+              {{ level }}
+            </option>
+          }
+        </select>
+      </fieldset>
+
+      <div class="edit-btn-container">
+        <app-btn type="save" (onClick)="updateLanguage()">save</app-btn>
+        <app-btn type="save" (onClick)="setNull()">close</app-btn>
+      </div>
+    </form>
+  </div>
+}

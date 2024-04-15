@@ -35,7 +35,7 @@
       </fieldset>
 
       <div class="btn-container">
-        <app-btn>save education</app-btn>
+        <app-btn type="save">save education</app-btn>
       </div>
     </form>
 
@@ -60,18 +60,19 @@
         </div>
 
         <div class="edition-btn-container">
-          <app-btn (onClick)="updateEducation(education)" type="save"
-            >update education</app-btn
-          >
+          <app-btn (onClick)="editEducation(education)" type="save"
+            >edit
+          </app-btn>
           <app-btn (onClick)="deleteEducation(education.id)" type="danger"
-            >delete education</app-btn
-          >
+            >delete
+          </app-btn>
         </div>
       </div>
       <app-divider />
     }
   }
 
+  <!-- SHOW TABLE SECTION -->
   @if (educations().length >= 1) {
     <div class="section-container">
       <h3 class="highlight">education</h3>
@@ -96,3 +97,41 @@
     </div>
   }
 </main>
+
+<!-- UPDATE SECTION -->
+@if (educationToEdit()) {
+  <div class="update-container">
+    <form [formGroup]="form" class="update-form">
+      <fieldset>
+        <label for="degree">Degree or Diploma Name*</label>
+        <input type="text" formControlName="degree" />
+      </fieldset>
+
+      <fieldset>
+        <label for="acronym">acronym*</label>
+        <input type="text" formControlName="acronym" />
+      </fieldset>
+
+      <fieldset>
+        <label for="yearGraduated">year graduated*</label>
+        <input type="text" formControlName="yearGraduated" />
+      </fieldset>
+
+      <fieldset>
+        <label for="levelAttained">level attained*</label>
+        <select formControlName="levelAttained">
+          @for (level of levels; track level) {
+            <option [value]="level">
+              {{ level }}
+            </option>
+          }
+        </select>
+      </fieldset>
+
+      <div class="edit-btn-container">
+        <app-btn type="save" (onClick)="updateEducation()">save</app-btn>
+        <app-btn type="save" (onClick)="setNull()">close</app-btn>
+      </div>
+    </form>
+  </div>
+}

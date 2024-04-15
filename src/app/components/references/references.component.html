@@ -40,6 +40,7 @@
 
     <app-divider />
 
+    <!-- LIST SECTION  -->
     @for (reference of references(); track reference.id) {
       <div class="edition-form">
         <div>
@@ -63,11 +64,11 @@
         </div>
 
         <div class="edition-btn-container">
-          <app-btn (onClick)="updateReference(reference)" type="save"
-            >update reference</app-btn
+          <app-btn (onClick)="setEditrReference(reference)" type="save"
+            >edit</app-btn
           >
           <app-btn (onClick)="deleteReference(reference.id)" type="danger"
-            >delete reference</app-btn
+            >delete</app-btn
           >
         </div>
       </div>
@@ -75,6 +76,7 @@
     }
   }
 
+  <!-- TABLE SECTION -->
   @if (references().length >= 1) {
     <div class="section-container">
       <h3 class="highlight">references</h3>
@@ -101,3 +103,40 @@
     </div>
   }
 </main>
+
+<!-- EDIT SECTION  -->
+@if (this.referenceToEdit()) {
+  <div class="update-container">
+    <form [formGroup]="form" class="update-form">
+      <fieldset>
+        <label for="name">name</label>
+        <input type="text" formControlName="name" />
+      </fieldset>
+
+      <fieldset>
+        <label for="employer">employer</label>
+        <input type="text" formControlName="employer" />
+      </fieldset>
+
+      <fieldset>
+        <label for="title">title</label>
+        <input type="text" formControlName="title" />
+      </fieldset>
+
+      <fieldset>
+        <label for="phone">phone</label>
+        <input type="text" formControlName="phone" />
+      </fieldset>
+
+      <fieldset>
+        <label for="email">email</label>
+        <input type="text" formControlName="email" />
+      </fieldset>
+
+      <div class="edit-btn-container">
+        <app-btn type="save" (onClick)="updateReference()">save</app-btn>
+        <app-btn type="save" (onClick)="setNull()">close</app-btn>
+      </div>
+    </form>
+  </div>
+}

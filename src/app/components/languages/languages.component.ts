@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { LanguageLevels, Languages } from '../../interfaces/interfaces';
+import { LanguageLevels, Language } from '../../interfaces/interfaces';
 import { StorageService } from '../../services/storage.service';
 import { UuidService } from '../../services/uuid.service';
 import {
@@ -22,7 +22,9 @@ export class LanguagesComponent {
   uuidService = inject(UuidService);
   storageServ = inject(StorageService);
 
-  languages = signal<Languages[]>([]);
+  languages = signal<Language[]>([]);
+  languageToEdit = signal<Language | null>(null);
+
   levels: LanguageLevels[] = ['None', 'Novice', 'Intermediate', 'Advanced'];
   showForm = signal(false);
   showUpdateForm = signal(false);
@@ -39,7 +41,7 @@ export class LanguagesComponent {
     const savedLanguages = this.storageServ.getStorage(this.storageVariable);
 
     if (savedLanguages) {
-      const languages = JSON.parse(savedLanguages) as Languages[];
+      const languages = JSON.parse(savedLanguages) as Language[];
       this.languages.set(languages);
     }
   }
@@ -56,17 +58,11 @@ export class LanguagesComponent {
     this.toggleForm();
 
     if (this.form.valid) {
-      const language: Languages = {
-        id: this.uuidService.uuidv4,
-        language: this.form.get('language')?.value!,
-        spoken: this.form.get('spoken')?.value! as LanguageLevels,
-        read: this.form.get('read')?.value! as LanguageLevels,
-        written: this.form.get('written')?.value! as LanguageLevels,
-      };
+      const language = this.getAllFormFields();
 
       this.languages.update((prev) => [...prev, language]);
       this.storageServ.setStorage(this.storageVariable, this.languages());
-
+      this.form.reset();
     }
   }
 
@@ -75,5 +71,40 @@ export class LanguagesComponent {
     this.languages.set(newLanguages);
     this.storageServ.setStorage(this.storageVariable, this.languages());
     this.toggleForm();
+  }
+
+  getAllFormFields() {
+    const language: Language = {
+      id: this.uuidService.uuidv4,
+      language: this.form.get('language')?.value!,
+      spoken: this.form.get('spoken')?.value! as LanguageLevels,
+      read: this.form.get('read')?.value! as LanguageLevels,
+      written: this.form.get('written')?.value! as LanguageLevels,
+    };
+
+    return language;
+  }
+
+  setNull() {
+    this.languageToEdit.set(null);
+  }
+
+  setEditLanguage(language: Language) {
+    this.languageToEdit.set(language);
+    this.form.patchValue(language);
+  }
+
+  updateLanguage() {
+    const index = this.languages().findIndex(
+      (edu) => edu.id === this.languageToEdit()?.id,
+    );
+
+    const language = this.getAllFormFields();
+
+    this.languages()[index] = language;
+    this.storageServ.setStorage(this.storageVariable, this.languages());
+    this.setNull();
+    this.toggleForm();
+    this.form.reset();
   }
 }

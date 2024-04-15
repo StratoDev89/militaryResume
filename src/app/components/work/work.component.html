@@ -16,7 +16,7 @@
   </p>
 
   <div class="edit-save-container">
-    <app-btn (onClick)="editToggle()">Edit</app-btn>
+    <app-btn (onClick)="editToggle()" type="save">Edit</app-btn>
     <app-btn (onClick)="deleteWorkExperience(work.id)" type="danger">Delete</app-btn>
   </div>
 </div>
@@ -103,8 +103,8 @@
       </fieldset>
 
       <div class="save-close-container">
-        <app-btn (onClick)="updateWork()">Save</app-btn>
-        <app-btn (onClick)="editToggle()">Close</app-btn>
+        <app-btn (onClick)="updateWork()" type="save">Save</app-btn>
+        <app-btn (onClick)="editToggle()" type="save">Close</app-btn>
       </div>
     </form>
   </div>

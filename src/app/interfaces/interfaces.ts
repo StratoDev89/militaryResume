@@ -67,7 +67,7 @@ export interface AdditionalInfo {
 }
 
 export type LanguageLevels = 'None' | 'Novice' | 'Intermediate' | 'Advanced';
-export interface Languages {
+export interface Language {
   id: string;
   language: string;
   spoken: LanguageLevels;

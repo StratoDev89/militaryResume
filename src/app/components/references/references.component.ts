@@ -24,6 +24,7 @@ export class ReferencesComponent {
   showForm = signal(false);
   showUpdateForm = signal(false);
   references = signal<Reference[]>([]);
+  referenceToEdit = signal<Reference | null>(null);
   storageVariable = 'references';
 
   form = new FormGroup({
@@ -55,17 +56,10 @@ export class ReferencesComponent {
     this.toggleForm();
 
     if (this.form.valid) {
-      const reference: Reference = {
-        id: this.uuidService.uuidv4,
-        name: this.form.get('name')?.value!,
-        employer: this.form.get('employer')?.value!,
-        title: this.form.get('title')?.value!,
-        phone: this.form.get('phone')?.value!,
-        email: this.form.get('email')?.value!,
-      };
-
+      const reference = this.getAllFormFields();
       this.references.update((prev) => [...prev, reference]);
       this.storageServ.setStorage(this.storageVariable, this.references());
+      this.form.reset();
     }
   }
 
@@ -76,7 +70,39 @@ export class ReferencesComponent {
     this.toggleForm();
   }
 
-  updateReference(reference: Reference) {
-    // TODO
+  getAllFormFields() {
+    const reference: Reference = {
+      id: this.uuidService.uuidv4,
+      name: this.form.get('name')?.value!,
+      employer: this.form.get('employer')?.value!,
+      title: this.form.get('title')?.value!,
+      phone: this.form.get('phone')?.value!,
+      email: this.form.get('email')?.value!,
+    };
+
+    return reference;
+  }
+
+  setNull() {
+    this.referenceToEdit.set(null);
+  }
+
+  setEditrReference(reference: Reference) {
+    this.referenceToEdit.set(reference);
+    this.form.patchValue(reference);
+  }
+
+  updateReference() {
+    const index = this.references().findIndex(
+      (edu) => edu.id === this.referenceToEdit()?.id,
+    );
+
+    const reference = this.getAllFormFields();
+
+    this.references()[index] = reference;
+    this.storageServ.setStorage(this.storageVariable, this.references());
+    this.setNull();
+    this.toggleForm();
+    this.form.reset();
   }
 }

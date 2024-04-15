@@ -11,7 +11,6 @@ import { UuidService } from '../../services/uuid.service';
 import { BtnComponent } from '../btn/btn.component';
 import { DividerComponent } from '../divider/divider.component';
 
-
 @Component({
   selector: 'app-education',
   standalone: true,
@@ -23,7 +22,6 @@ export class EducationComponent {
   uuidService = inject(UuidService);
   storageServ = inject(StorageService);
   showForm = signal(false);
-  showUpdateForm = signal(false);
   educations = signal<Education[]>([]);
   storageVariable = 'education';
   levels: LevelAttained[] = [
@@ -35,6 +33,7 @@ export class EducationComponent {
     'Doctoral Degree',
     'Professional Degree (e.g., MD, JD, DDS)',
   ];
+  educationToEdit = signal<Education | null>(null);
 
   form = new FormGroup({
     degree: new FormControl('', [Validators.required]),
@@ -56,24 +55,15 @@ export class EducationComponent {
     this.showForm.update((prev) => !prev);
   }
 
-  toggleUpdateForm() {
-    this.showUpdateForm.update((prev) => !prev);
-  }
-
   addEducation() {
     this.toggleForm();
 
-    if (this.form.valid) {
-      const education: Education = {
-        id: this.uuidService.uuidv4,
-        degree: this.form.get('degree')?.value!,
-        acronym: this.form.get('acronym')?.value!,
-        yearGraduated: this.form.get('yearGraduated')?.value!,
-        levelAttained: this.form.get('levelAttained')?.value! as LevelAttained,
-      };
+    const education = this.getAllFormFields();
 
+    if (this.form.valid) {
       this.educations.update((prev) => [...prev, education]);
       this.storageServ.setStorage(this.storageVariable, this.educations());
+      this.form.reset();
     }
   }
 
@@ -84,7 +74,38 @@ export class EducationComponent {
     this.toggleForm();
   }
 
-  updateEducation(education: Education) {
-    // TODO
+  updateEducation() {
+    const index = this.educations().findIndex(
+      (edu) => edu.id === this.educationToEdit()?.id,
+    );
+
+    const education = this.getAllFormFields();
+
+    this.educations()[index] = education;
+    this.storageServ.setStorage(this.storageVariable, this.educations());
+    this.setNull();
+    this.toggleForm();
+    this.form.reset();
+  }
+
+  editEducation(education: Education) {
+    this.educationToEdit.set(education);
+    this.form.patchValue(education);
+  }
+
+  setNull() {
+    this.educationToEdit.set(null);
+  }
+
+  getAllFormFields() {
+    const education: Education = {
+      id: this.uuidService.uuidv4,
+      degree: this.form.get('degree')?.value!,
+      acronym: this.form.get('acronym')?.value!,
+      yearGraduated: this.form.get('yearGraduated')?.value!,
+      levelAttained: this.form.get('levelAttained')?.value! as LevelAttained,
+    };
+
+    return education;
   }
 }
