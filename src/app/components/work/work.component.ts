@@ -1,7 +1,19 @@
-import { Component, EventEmitter, Input, Output, inject, signal } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  inject,
+  signal,
+} from '@angular/core';
 import { WorkExperience, FormField } from '../../interfaces/interfaces';
 import { BtnComponent } from '../btn/btn.component';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { StatesService } from '../../services/states.service';
 import { DatePipe } from '@angular/common';
 
@@ -20,20 +32,21 @@ export class WorkComponent {
   @Output() updateClick = new EventEmitter<WorkExperience>();
 
   workUpdated = signal<WorkExperience | null>(null);
+
   isEdition = signal(false);
 
   form = new FormGroup({
     position: new FormControl(),
-    organization: new FormControl(''),
-    address: new FormControl(''),
-    city: new FormControl(''),
-    state: new FormControl(''),
-    zipCode: new FormControl(''),
-    startDate: new FormControl<Date | null>(null),
-    endDate: new FormControl<Date | null>(null),
-    hours: new FormControl(''),
-    salary: new FormControl(''),
-    skills: new FormControl(''),
+    organization: new FormControl('', [Validators.required]),
+    address: new FormControl('', [Validators.required]),
+    city: new FormControl('', [Validators.required]),
+    state: new FormControl('', [Validators.required]),
+    zipCode: new FormControl('', [Validators.required]),
+    startDate: new FormControl<Date | null>(null, [Validators.required]),
+    endDate: new FormControl<Date | null>(null, [Validators.required]),
+    hours: new FormControl('', [Validators.required]),
+    salary: new FormControl('', [Validators.required]),
+    skills: new FormControl('', [Validators.required]),
   });
 
   ngOnInit(): void {
@@ -72,5 +85,50 @@ export class WorkComponent {
 
   deleteWorkExperience(id: string) {
     this.deleteClick.emit(id);
+  }
+
+  // getters
+  get position() {
+    return this.form.get('position');
+  }
+
+  get organization() {
+    return this.form.get('organization');
+  }
+
+  get address() {
+    return this.form.get('address');
+  }
+
+  get city() {
+    return this.form.get('city');
+  }
+
+  get state() {
+    return this.form.get('state');
+  }
+
+  get zipCode() {
+    return this.form.get('zipCode');
+  }
+
+  get startDate() {
+    return this.form.get('startDate');
+  }
+
+  get endDate() {
+    return this.form.get('endDate');
+  }
+
+  get hours() {
+    return this.form.get('hours');
+  }
+
+  get salary() {
+    return this.form.get('salary');
+  }
+
+  get skills() {
+    return this.form.get('skills');
   }
 }

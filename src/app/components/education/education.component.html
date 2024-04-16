@@ -1,4 +1,8 @@
-<main [attr.data-html2canvas-ignore]="educations().length >= 1 ? null : ''">
+<main
+  class="section-education"
+  [attr.data-html2canvas-ignore]="educations().length >= 1 ? null : ''"
+  id="resume"
+>
   <app-btn (onClick)="toggleForm()">add education</app-btn>
 
   @if (showForm()) {

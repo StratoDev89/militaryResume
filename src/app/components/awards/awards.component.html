@@ -1,4 +1,8 @@
-<main [attr.data-html2canvas-ignore]="awards() ? null : ''">
+<main
+  class="section-awards"
+  [attr.data-html2canvas-ignore]="awards() ? null : ''"
+  id="resume"
+>
   <app-btn (onClick)="toggleForm()">add / edit awards section</app-btn>
 
   @if (showForm()) {

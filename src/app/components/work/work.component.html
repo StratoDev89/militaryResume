@@ -1,5 +1,4 @@
 <div class="experience-container">
-  <h3 class="highlight">experience</h3>
   <h4>{{ work.position }}</h4>
   <h5>{{ work.organization }}</h5>
   <p>
@@ -8,10 +7,9 @@
   </p>
   <p>
     <strong>Dates:</strong> {{ work.startDate | date: "shortDate" : "UTC" }} -
-    {{ work.endDate | date: "shortDate" : "UTC"  }} | <strong>Salary:</strong> ${{
-      work.salary
-    }}
-    - <strong>Works per week: </strong>{{ work.hours }}
+    {{ work.endDate | date: "shortDate" : "UTC" }} |
+    <strong>Salary:</strong> ${{ work.salary }} -
+    <strong>Works per week: </strong>{{ work.hours }}
   </p>
   <p class="skills">
     {{ work.skills }}
@@ -30,7 +28,12 @@
     <form [formGroup]="form">
       <fieldset>
         <label for="position">position</label>
-        <input type="text" [value]="work.position" formControlName="position" />
+        <input
+          type="text"
+          [value]="work.position"
+          [class.error]="position?.invalid && position?.touched"
+          formControlName="position"
+        />
       </fieldset>
 
       <fieldset>
@@ -39,22 +42,36 @@
           type="text"
           [value]="work.organization"
           formControlName="organization"
+          [class.error]="organization?.invalid && organization?.touched"
         />
       </fieldset>
 
       <fieldset>
         <label for="address">address</label>
-        <input type="text" [value]="work.address" formControlName="address" />
+        <input
+          type="text"
+          [value]="work.address"
+          formControlName="address"
+          [class.error]="address?.invalid && address?.touched"
+        />
       </fieldset>
 
       <fieldset>
         <label for="city">city</label>
-        <input type="text" [value]="work.city" formControlName="city" />
+        <input
+          type="text"
+          [value]="work.city"
+          formControlName="city"
+          [class.error]="city?.invalid && city?.touched"
+        />
       </fieldset>
 
       <fieldset>
         <label for="state">state</label>
-        <select formControlName="state">
+        <select
+          formControlName="state"
+          [class.error]="state?.invalid && state?.touched"
+        >
           @for (state of states; track state) {
             <option [value]="state">
               {{ state }}
@@ -65,7 +82,12 @@
 
       <fieldset>
         <label for="zipCode">zipCode</label>
-        <input type="text" [value]="work.zipCode" formControlName="zipCode" />
+        <input
+          type="text"
+          [value]="work.zipCode"
+          formControlName="zipCode"
+          [class.error]="zipCode?.invalid && zipCode?.touched"
+        />
       </fieldset>
 
       <fieldset>
@@ -74,22 +96,38 @@
           type="date"
           [value]="work.startDate"
           formControlName="startDate"
+          [class.error]="startDate?.invalid && startDate?.touched"
         />
       </fieldset>
 
       <fieldset>
         <label for="endDate">End Date</label>
-        <input type="date" [value]="work.endDate" formControlName="endDate" />
+        <input
+          type="date"
+          [value]="work.endDate"
+          formControlName="endDate"
+          [class.error]="endDate?.invalid && endDate?.touched"
+        />
       </fieldset>
 
       <fieldset>
         <label for="salary">Salary</label>
-        <input type="text" [value]="work.salary" formControlName="salary" />
+        <input
+          type="text"
+          [value]="work.salary"
+          formControlName="salary"
+          [class.error]="salary?.invalid && salary?.touched"
+        />
       </fieldset>
 
       <fieldset>
         <label for="hours">Hours per Week</label>
-        <input type="text" [value]="work.hours" formControlName="hours" />
+        <input
+          type="text"
+          [value]="work.hours"
+          formControlName="hours"
+          [class.error]="hours?.invalid && hours?.touched"
+        />
       </fieldset>
 
       <fieldset
@@ -103,6 +141,7 @@
           rows="10"
           [value]="work.skills"
           formControlName="skills"
+          [class.error]="skills?.invalid && skills?.touched"
         ></textarea>
       </fieldset>
 

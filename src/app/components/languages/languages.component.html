@@ -1,4 +1,8 @@
-<main [attr.data-html2canvas-ignore]="languages().length >= 1 ? null : ''">
+<main
+  class="section-languages"
+  [attr.data-html2canvas-ignore]="languages().length >= 1 ? null : ''"
+  id="resume"
+>
   <app-btn (onClick)="toggleForm()">add languages</app-btn>
 
   @if (showForm()) {

@@ -1,13 +1,13 @@
-<main [attr.data-html2canvas-ignore]="additionalInfo() ? null : ''" >
+<main
+  class="section-additional"
+  [attr.data-html2canvas-ignore]="additionalInfo() ? null : ''"
+  id="resume"
+>
   <app-btn (onClick)="toggleForm()">add / edit additional information</app-btn>
 
   @if (showForm()) {
     <app-divider />
-    <form
-      [formGroup]="form"
-      class="primary-form"
-      (ngSubmit)="addInfo()"
-    >
+    <form [formGroup]="form" class="primary-form" (ngSubmit)="addInfo()">
       <fieldset>
         <textarea
           name="award"

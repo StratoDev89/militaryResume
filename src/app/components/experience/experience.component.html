@@ -1,5 +1,7 @@
 <main
+  class="section-experience"
   [attr.data-html2canvas-ignore]="workExperiences().length >= 1 ? null : ''"
+  id="resume"
 >
   <app-btn (onClick)="toggleForm()">add work experience </app-btn>
 
@@ -13,28 +15,47 @@
     >
       <fieldset>
         <label for="position">position*</label>
-        <input type="text" formControlName="position"  [class.error]="position?.invalid && position?.touched"/>
+        <input
+          type="text"
+          formControlName="position"
+          [class.error]="position?.invalid && position?.touched"
+        />
       </fieldset>
 
       <fieldset>
         <label for="organization">organization*</label>
-        <input type="text" formControlName="organization" [class.error]="organization?.invalid && organization?.touched" />
+        <input
+          type="text"
+          formControlName="organization"
+          [class.error]="organization?.invalid && organization?.touched"
+        />
       </fieldset>
 
       <fieldset>
         <label for="address">address*</label>
-        <input type="text" formControlName="address"  [class.error]="address?.invalid && address?.touched"/>
+        <input
+          type="text"
+          formControlName="address"
+          [class.error]="address?.invalid && address?.touched"
+        />
       </fieldset>
 
       <div class="three-col">
         <fieldset>
           <label for="city">city*</label>
-          <input type="text" formControlName="city" [class.error]="city?.invalid && city?.touched" />
+          <input
+            type="text"
+            formControlName="city"
+            [class.error]="city?.invalid && city?.touched"
+          />
         </fieldset>
 
         <fieldset>
           <label for="state">state*</label>
-          <select formControlName="state" [class.error]="state?.invalid && state?.touched">
+          <select
+            formControlName="state"
+            [class.error]="state?.invalid && state?.touched"
+          >
             @for (state of states; track state) {
               <option [value]="state">
                 {{ state }}
@@ -45,29 +66,49 @@
 
         <fieldset>
           <label for="zipCode">zip Code*</label>
-          <input type="text" formControlName="zipCode" [class.error]="zipCode?.invalid && zipCode?.touched"/>
+          <input
+            type="text"
+            formControlName="zipCode"
+            [class.error]="zipCode?.invalid && zipCode?.touched"
+          />
         </fieldset>
       </div>
 
       <div class="four-col">
         <fieldset>
           <label for="startDate">start Date*</label>
-          <input type="date" formControlName="startDate"  [class.error]="startDate?.invalid && startDate?.touched"/>
+          <input
+            type="date"
+            formControlName="startDate"
+            [class.error]="startDate?.invalid && startDate?.touched"
+          />
         </fieldset>
 
         <fieldset>
           <label for="endDate">end Date*</label>
-          <input type="date" formControlName="endDate"  [class.error]="endDate?.invalid && endDate?.touched"/>
+          <input
+            type="date"
+            formControlName="endDate"
+            [class.error]="endDate?.invalid && endDate?.touched"
+          />
         </fieldset>
 
         <fieldset>
           <label for="hours">hours per week*</label>
-          <input type="text" formControlName="hours"  [class.error]="hours?.invalid && hours?.touched"/>
+          <input
+            type="text"
+            formControlName="hours"
+            [class.error]="hours?.invalid && hours?.touched"
+          />
         </fieldset>
 
         <fieldset>
           <label for="salary">salary*</label>
-          <input type="text" formControlName="salary" [class.error]="salary?.invalid && salary?.touched" />
+          <input
+            type="text"
+            formControlName="salary"
+            [class.error]="salary?.invalid && salary?.touched"
+          />
         </fieldset>
       </div>
 
@@ -92,6 +133,8 @@
   }
   @if (workExperiences().length >= 1) {
     <div style="width: 100%">
+      <h3 class="highlight">experience</h3>
+
       @for (work of workExperiences(); track work.id) {
         <app-work
           [work]="work"

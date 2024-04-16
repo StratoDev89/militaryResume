@@ -1,4 +1,8 @@
-<main [attr.data-html2canvas-ignore]="references().length >= 1 ? null : ''">
+<main
+  class="section-references"
+  [attr.data-html2canvas-ignore]="references().length >= 1 ? null : ''"
+  id="resume"
+>
   <app-btn (onClick)="toggleForm()">add references</app-btn>
 
   @if (showForm()) {

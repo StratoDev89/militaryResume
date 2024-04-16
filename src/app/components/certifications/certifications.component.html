@@ -1,4 +1,8 @@
-<main [attr.data-html2canvas-ignore]="certifications() ? null : ''">
+<main
+  class="section-certifications"
+  [attr.data-html2canvas-ignore]="certifications() ? null : ''"
+  id="resume"
+>
   <app-btn (onClick)="toggleForm()">add / edit certifications section</app-btn>
 
   @if (showForm()) {
