@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SummaryComponent } from '../summary/summary.component';
 import { jsPDF } from 'jspdf';
@@ -16,6 +16,7 @@ import { ReferencesComponent } from '../references/references.component';
 import { backgroundClip } from 'html2canvas/dist/types/css/property-descriptors/background-clip';
 import { DividerToRenderComponent } from '../divider-to-render/divider-to-render.component';
 import { BtnComponent } from '../btn/btn.component';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-form',
@@ -40,6 +41,7 @@ import { BtnComponent } from '../btn/btn.component';
 })
 export class FormComponent {
   @Input({ required: true }) headerFormInfo!: HeaderFormInfo;
+  storageServ = inject(StorageService);
 
   generatePdf() {
     const elementToPrint = document.querySelector('#resume') as HTMLElement;

@@ -4,6 +4,17 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class StorageService {
+  private storageVariables = [
+    'header',
+    'summary',
+    'workExperience',
+    'education',
+    'certifications',
+    'awards',
+    'languages',
+    'references',
+    'additionalInformation',
+  ];
 
   setStorage(storageVariable: string, payload: any) {
     localStorage.setItem(storageVariable, JSON.stringify(payload));
@@ -14,6 +25,13 @@ export class StorageService {
   }
 
   remove(storageVariable: string) {
-    localStorage.removeItem(storageVariable)
+    localStorage.removeItem(storageVariable);
+  }
+
+  clearStorage() {
+    this.storageVariables.forEach((item) => {
+      this.remove(item);
+      location.reload()
+    });
   }
 }

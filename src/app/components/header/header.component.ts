@@ -9,6 +9,7 @@ import { FormComponent } from '../form/form.component';
 import { HeaderFormInfo } from '../../interfaces/interfaces';
 import { BtnComponent } from '../btn/btn.component';
 import { StatesService } from '../../services/states.service';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-header',
@@ -20,6 +21,8 @@ import { StatesService } from '../../services/states.service';
 export class HeaderComponent {
   headerFormInfo: HeaderFormInfo | null = null;
   states = inject(StatesService).getStates();
+  storageServ = inject(StorageService);
+  storageVariable = 'header';
 
   form = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
@@ -45,7 +48,7 @@ export class HeaderComponent {
         phone: this.form.get('phone')?.value!,
       };
 
-      localStorage.setItem('header', JSON.stringify(this.headerFormInfo));
+      this.storageServ.setStorage(this.storageVariable, this.headerFormInfo);
       return;
     }
 
@@ -53,7 +56,7 @@ export class HeaderComponent {
   }
 
   ngOnInit() {
-    const header = localStorage.getItem('header');
+    const header = this.storageServ.getStorage(this.storageVariable);
 
     if (header) {
       this.headerFormInfo = JSON.parse(header);

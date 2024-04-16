@@ -62,7 +62,18 @@
   </app-field-container>
 </main>
 
-<div style="text-align: center; margin-bottom: 3rem">
+<div
+  style="
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: center;
+    column-gap: 1rem;
+    width: 100%;
+  "
+>
   <app-btn type="save" (onClick)="generatePdf()">Generate PDF</app-btn>
+  <app-btn type="danger" (onClick)="storageServ.clearStorage()"
+    >clear all</app-btn
+  >
 </div>
 <div id="toInsert"></div>
