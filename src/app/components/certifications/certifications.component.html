@@ -1,4 +1,4 @@
-<main>
+<main [attr.data-html2canvas-ignore]="certifications() ? null : ''">
   <app-btn (onClick)="toggleForm()">add / edit certifications section</app-btn>
 
   @if (showForm()) {

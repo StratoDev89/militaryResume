@@ -1,5 +1,4 @@
-
-<main>
+<main [attr.data-html2canvas-ignore]="summary() ? null : ''">
   <app-btn (onClick)="toggleSumary()">add / edit professional summary</app-btn>
 
   @if (showSummary()) {

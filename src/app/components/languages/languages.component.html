@@ -1,4 +1,4 @@
-<main>
+<main  [attr.data-html2canvas-ignore]="languages().length >= 1 ? null : ''">
   <app-btn (onClick)="toggleForm()">add languages</app-btn>
 
   @if (showForm()) {

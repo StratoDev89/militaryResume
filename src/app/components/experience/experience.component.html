@@ -1,4 +1,6 @@
-<main>
+<main
+  [attr.data-html2canvas-ignore]="workExperiences().length >= 1 ? null : ''"
+>
   <app-btn (onClick)="toggleForm()">add work experience </app-btn>
 
   @if (showForm()) {

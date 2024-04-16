@@ -1,4 +1,8 @@
-import { Component, inject, signal } from '@angular/core';
+import {
+  Component,
+  inject,
+  signal,
+} from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Summary } from '../../interfaces/interfaces';
 import { BtnComponent } from '../btn/btn.component';
@@ -31,7 +35,6 @@ export class SummaryComponent {
   saveSummary() {
     this.toggleSumary();
 
-
     if (this.summaryForm.get('summary')?.value!) {
       this.summary.set(this.summaryForm.get('summary')?.value!);
 
@@ -40,7 +43,7 @@ export class SummaryComponent {
     }
 
     this.storageServ.remove(this.storageVariable);
-    this.summary.set(null)
+    this.summary.set(null);
   }
 
   toggleSumary() {
@@ -55,4 +58,6 @@ export class SummaryComponent {
       this.summaryForm.patchValue({ summary: savedSummary });
     }
   }
+
+  carro = signal(false)
 }

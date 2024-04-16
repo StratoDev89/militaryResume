@@ -13,55 +13,56 @@
     </header>
   </section>
 
-  <app-divider />
+  <app-divider-to-render />
 
   <app-field-container>
     <app-summary />
   </app-field-container>
 
-  <app-divider />
+  <app-divider-to-render />
 
   <app-field-container>
     <app-experience />
   </app-field-container>
 
-  <app-divider />
+  <app-divider-to-render />
 
   <app-field-container>
     <app-education />
   </app-field-container>
 
-  <app-divider />
+  <app-divider-to-render />
 
   <app-field-container>
     <app-certifications />
   </app-field-container>
 
-  <app-divider />
+  <app-divider-to-render />
 
   <app-field-container>
     <app-awards />
   </app-field-container>
 
-  <app-divider />
+  <app-divider-to-render />
 
   <app-field-container>
     <app-languages />
   </app-field-container>
 
-  <app-divider />
-
-  <app-field-container>
-    <app-aditional-info />
-  </app-field-container>
-
-  <app-divider />
+  <app-divider-to-render />
 
   <app-field-container>
     <app-references />
   </app-field-container>
 
-  <app-divider />
+  <app-divider-to-render />
+
+  <app-field-container>
+    <app-aditional-info />
+  </app-field-container>
 </main>
 
-<button (click)="generatePdf()">Generate PDF</button>
+<div style="text-align: center; margin-bottom: 3rem;">
+  <app-btn type="save" (onClick)="generatePdf()">Generate PDF</app-btn>
+</div>
+<div id="toInsert"></div>
