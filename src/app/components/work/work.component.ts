@@ -3,11 +3,12 @@ import { WorkExperience, FormField } from '../../interfaces/interfaces';
 import { BtnComponent } from '../btn/btn.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { StatesService } from '../../services/states.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-work',
   standalone: true,
-  imports: [BtnComponent, ReactiveFormsModule],
+  imports: [BtnComponent, ReactiveFormsModule, DatePipe],
   templateUrl: './work.component.html',
   styleUrl: './work.component.scss',
 })

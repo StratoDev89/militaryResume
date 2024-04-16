@@ -13,6 +13,7 @@ import { StorageService } from '../../services/storage.service';
 import { StatesService } from '../../services/states.service';
 import { DividerComponent } from '../divider/divider.component';
 
+
 @Component({
   selector: 'app-experience',
   standalone: true,
@@ -59,21 +60,7 @@ export class ExperienceComponent {
     this.showForm.update((prev) => !prev);
 
     if (this.form.valid) {
-      const experience = {
-        id: this.uuidService.uuidv4,
-        position: this.form.get('position')?.value!,
-        organization: this.form.get('organization')?.value!,
-        address: this.form.get('address')?.value!,
-        city: this.form.get('city')?.value!,
-        state: this.form.get('state')?.value!,
-        zipCode: this.form.get('zipCode')?.value!,
-        startDate: new Date(this.form.get('startDate')?.value!),
-        endDate: new Date(this.form.get('endDate')?.value!),
-        hours: this.form.get('hours')?.value!,
-        salary: this.form.get('salary')?.value!,
-        skills: this.form.get('skills')?.value!,
-      };
-
+      const experience = this.getAllFormFields();
       this.workExperiences.update((prev) => [...prev, experience]);
       this.storageServ.setStorage(this.storageVariable, this.workExperiences());
     }
@@ -94,5 +81,24 @@ export class ExperienceComponent {
 
     this.workExperiences()[index] = work;
     this.storageServ.setStorage(this.storageVariable, this.workExperiences());
+  }
+
+  getAllFormFields() {
+    const experience = {
+      id: this.uuidService.uuidv4,
+      position: this.form.get('position')?.value!,
+      organization: this.form.get('organization')?.value!,
+      address: this.form.get('address')?.value!,
+      city: this.form.get('city')?.value!,
+      state: this.form.get('state')?.value!,
+      zipCode: this.form.get('zipCode')?.value!,
+      startDate: new Date(this.form.get('startDate')?.value!),
+      endDate: new Date(this.form.get('endDate')?.value!),
+      hours: this.form.get('hours')?.value!,
+      salary: this.form.get('salary')?.value!,
+      skills: this.form.get('skills')?.value!,
+    };
+
+    return experience;
   }
 }

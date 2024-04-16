@@ -7,9 +7,11 @@
     {{ work.zipCode }}
   </p>
   <p>
-    <strong>Dates:</strong> {{ work.startDate }} - {{ work.endDate }} |
-    <strong>Salary:</strong> ${{ work.salary }} -
-    <strong>Works per week: </strong>{{ work.hours }}
+    <strong>Dates:</strong> {{ work.startDate | date: "shortDate" : "UTC" }} -
+    {{ work.endDate | date: "shortDate" : "UTC"  }} | <strong>Salary:</strong> ${{
+      work.salary
+    }}
+    - <strong>Works per week: </strong>{{ work.hours }}
   </p>
   <p class="skills">
     {{ work.skills }}
@@ -17,7 +19,9 @@
 
   <div class="edit-save-container">
     <app-btn (onClick)="editToggle()" type="save">Edit</app-btn>
-    <app-btn (onClick)="deleteWorkExperience(work.id)" type="danger">Delete</app-btn>
+    <app-btn (onClick)="deleteWorkExperience(work.id)" type="danger"
+      >Delete</app-btn
+    >
   </div>
 </div>
 
@@ -67,7 +71,7 @@
       <fieldset>
         <label for="startDate">Start Date</label>
         <input
-          type="text"
+          type="date"
           [value]="work.startDate"
           formControlName="startDate"
         />
@@ -75,7 +79,7 @@
 
       <fieldset>
         <label for="endDate">End Date</label>
-        <input type="text" [value]="work.endDate" formControlName="endDate" />
+        <input type="date" [value]="work.endDate" formControlName="endDate" />
       </fieldset>
 
       <fieldset>

@@ -54,11 +54,12 @@ export class FormComponent {
       scale: 2,
       height: elementToPrint.clientHeight,
     }).then((canvas) => {
-      const pdf = new jsPDF();
       const imgWidth = 210;
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
+      const pdf = new jsPDF({});
       toInsert.appendChild(canvas);
+
+      const totalPages = Math.ceil(imgHeight / 297);
 
       pdf.addImage(
         canvas.toDataURL('image/png'),
@@ -68,6 +69,7 @@ export class FormComponent {
         imgWidth,
         imgHeight,
       );
+
       pdf.save('resume.pdf');
     });
   }

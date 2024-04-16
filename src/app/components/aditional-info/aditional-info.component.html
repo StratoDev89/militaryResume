@@ -1,4 +1,4 @@
-<main [attr.data-html2canvas-ignore]="additionalInfo() ? null : null" >
+<main [attr.data-html2canvas-ignore]="additionalInfo() ? null : ''" >
   <app-btn (onClick)="toggleForm()">add / edit additional information</app-btn>
 
   @if (showForm()) {
