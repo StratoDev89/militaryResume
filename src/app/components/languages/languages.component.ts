@@ -55,15 +55,16 @@ export class LanguagesComponent {
   }
 
   addLanguage() {
-    this.toggleForm();
-
-    if (this.form.valid) {
-      const language = this.getAllFormFields();
-
-      this.languages.update((prev) => [...prev, language]);
-      this.storageServ.setStorage(this.storageVariable, this.languages());
-      this.form.reset();
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
     }
+
+    const language = this.getAllFormFields();
+    this.languages.update((prev) => [...prev, language]);
+    this.storageServ.setStorage(this.storageVariable, this.languages());
+    this.form.reset();
+    this.toggleForm();
   }
 
   deleteLanguage(id: string) {
@@ -95,16 +96,38 @@ export class LanguagesComponent {
   }
 
   updateLanguage() {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
     const index = this.languages().findIndex(
       (edu) => edu.id === this.languageToEdit()?.id,
     );
 
     const language = this.getAllFormFields();
-
     this.languages()[index] = language;
     this.storageServ.setStorage(this.storageVariable, this.languages());
     this.setNull();
     this.toggleForm();
     this.form.reset();
   }
+
+  // getters
+  get language() {
+    return this.form.get('language');
+  }
+
+  get spoken() {
+    return this.form.get('spoken');
+  }
+
+  get read() {
+    return this.form.get('read');
+  }
+
+  get written() {
+    return this.form.get('written');
+  }
+
 }

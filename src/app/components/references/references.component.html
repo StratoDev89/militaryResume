@@ -10,27 +10,47 @@
     >
       <fieldset>
         <label for="name">name*</label>
-        <input type="text" formControlName="name" />
+        <input
+          type="text"
+          formControlName="name"
+          [class.error]="name?.invalid && name?.touched"
+        />
       </fieldset>
 
       <fieldset>
         <label for="employer">employer*</label>
-        <input type="text" formControlName="employer" />
+        <input
+          type="text"
+          formControlName="employer"
+          [class.error]="employer?.invalid && employer?.touched"
+        />
       </fieldset>
 
       <fieldset>
         <label for="title">title*</label>
-        <input type="text" formControlName="title" />
+        <input
+          type="text"
+          formControlName="title"
+          [class.error]="title?.invalid && title?.touched"
+        />
       </fieldset>
 
       <fieldset>
         <label for="phone">phone</label>
-        <input type="text" formControlName="phone" />
+        <input
+          type="text"
+          formControlName="phone"
+          [class.error]="phone?.invalid && phone?.touched"
+        />
       </fieldset>
 
       <fieldset>
         <label for="email">email*</label>
-        <input type="text" formControlName="email" />
+        <input
+          type="text"
+          formControlName="email"
+          [class.error]="email?.invalid && email?.touched"
+        />
       </fieldset>
 
       <div class="btn-container">
@@ -110,27 +130,47 @@
     <form [formGroup]="form" class="update-form">
       <fieldset>
         <label for="name">name</label>
-        <input type="text" formControlName="name" />
+        <input
+          type="text"
+          formControlName="name"
+          [class.error]="name?.invalid && name?.touched"
+        />
       </fieldset>
 
       <fieldset>
         <label for="employer">employer</label>
-        <input type="text" formControlName="employer" />
+        <input
+          type="text"
+          formControlName="employer"
+          [class.error]="employer?.invalid && employer?.touched"
+        />
       </fieldset>
 
       <fieldset>
         <label for="title">title</label>
-        <input type="text" formControlName="title" />
+        <input
+          type="text"
+          formControlName="title"
+          [class.error]="title?.invalid && title?.touched"
+        />
       </fieldset>
 
       <fieldset>
         <label for="phone">phone</label>
-        <input type="text" formControlName="phone" />
+        <input
+          type="text"
+          formControlName="phone"
+          [class.error]="phone?.invalid && phone?.touched"
+        />
       </fieldset>
 
       <fieldset>
         <label for="email">email</label>
-        <input type="text" formControlName="email" />
+        <input
+          type="text"
+          formControlName="email"
+          [class.error]="email?.invalid && email?.touched"
+        />
       </fieldset>
 
       <div class="edit-btn-container">

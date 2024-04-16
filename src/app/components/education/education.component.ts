@@ -56,15 +56,17 @@ export class EducationComponent {
   }
 
   addEducation() {
-    this.toggleForm();
-
     const education = this.getAllFormFields();
 
     if (this.form.valid) {
       this.educations.update((prev) => [...prev, education]);
       this.storageServ.setStorage(this.storageVariable, this.educations());
+      this.toggleForm();
       this.form.reset();
+      return;
     }
+
+    this.form.markAllAsTouched();
   }
 
   deleteEducation(id: string) {
@@ -75,6 +77,11 @@ export class EducationComponent {
   }
 
   updateEducation() {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
     const index = this.educations().findIndex(
       (edu) => edu.id === this.educationToEdit()?.id,
     );
@@ -107,5 +114,22 @@ export class EducationComponent {
     };
 
     return education;
+  }
+
+  // getters
+  get degree() {
+    return this.form.get('degree');
+  }
+
+  get acronym() {
+    return this.form.get('acronym');
+  }
+
+  get yearGraduated() {
+    return this.form.get('yearGraduated');
+  }
+
+  get levelAttained() {
+    return this.form.get('levelAttained');
   }
 }

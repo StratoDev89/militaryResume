@@ -10,22 +10,37 @@
     >
       <fieldset>
         <label for="degree">Degree or Diploma Name*</label>
-        <input type="text" formControlName="degree" />
+        <input
+          type="text"
+          formControlName="degree"
+          [class.error]="degree?.invalid && degree?.touched"
+        />
       </fieldset>
 
       <fieldset>
         <label for="acronym">acronym*</label>
-        <input type="text" formControlName="acronym" />
+        <input
+          type="text"
+          formControlName="acronym"
+          [class.error]="acronym?.invalid && acronym?.touched"
+        />
       </fieldset>
 
       <fieldset>
         <label for="yearGraduated">year graduated*</label>
-        <input type="text" formControlName="yearGraduated" />
+        <input
+          type="text"
+          formControlName="yearGraduated"
+          [class.error]="yearGraduated?.invalid && yearGraduated?.touched"
+        />
       </fieldset>
 
       <fieldset>
         <label for="levelAttained">level attained*</label>
-        <select formControlName="levelAttained">
+        <select
+          formControlName="levelAttained"
+          [class.error]="levelAttained?.invalid && levelAttained?.touched"
+        >
           @for (level of levels; track level) {
             <option [value]="level">
               {{ level }}
@@ -104,22 +119,37 @@
     <form [formGroup]="form" class="update-form">
       <fieldset>
         <label for="degree">Degree or Diploma Name*</label>
-        <input type="text" formControlName="degree" />
+        <input
+          type="text"
+          formControlName="degree"
+          [class.error]="degree?.invalid && degree?.touched"
+        />
       </fieldset>
 
       <fieldset>
         <label for="acronym">acronym*</label>
-        <input type="text" formControlName="acronym" />
+        <input
+          type="text"
+          formControlName="acronym"
+          [class.error]="acronym?.invalid && acronym?.touched"
+        />
       </fieldset>
 
       <fieldset>
         <label for="yearGraduated">year graduated*</label>
-        <input type="text" formControlName="yearGraduated" />
+        <input
+          type="text"
+          formControlName="yearGraduated"
+          [class.error]="yearGraduated?.invalid && yearGraduated?.touched"
+        />
       </fieldset>
 
       <fieldset>
         <label for="levelAttained">level attained*</label>
-        <select formControlName="levelAttained">
+        <select
+          formControlName="levelAttained"
+          [class.error]="levelAttained?.invalid && levelAttained?.touched"
+        >
           @for (level of levels; track level) {
             <option [value]="level">
               {{ level }}

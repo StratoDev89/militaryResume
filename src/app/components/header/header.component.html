@@ -4,27 +4,46 @@
   <form [formGroup]="form" (ngSubmit)="addHeader()">
     <fieldset>
       <label for="">First Name*</label>
-      <input type="text" formControlName="firstName" />
+      <input
+        type="text"
+        formControlName="firstName"
+        [class.error]="firstName?.invalid && firstName?.touched"
+      />
     </fieldset>
 
     <fieldset>
       <label for="">Last Name*</label>
-      <input type="text" formControlName="lastName" />
+      <input
+        type="text"
+        formControlName="lastName"
+        [class.error]="lastName?.invalid && lastName?.touched"
+      />
     </fieldset>
 
     <fieldset>
       <label for="">Street*</label>
-      <input type="text" formControlName="street" />
+      <input
+        type="text"
+        formControlName="street"
+        [class.error]="street?.invalid && street?.touched"
+      />
     </fieldset>
 
     <fieldset>
       <label for="">City*</label>
-      <input type="text" formControlName="city" />
+      <input
+        type="text"
+        formControlName="city"
+        [class.error]="city?.invalid && city?.touched"
+      />
     </fieldset>
 
     <fieldset>
       <label for="">State</label>
-      <select formControlName="state">
+      <select
+        formControlName="state"
+        [class.error]="state?.invalid && state?.touched"
+      >
         @for (state of states; track state) {
           <option [value]="state">
             {{ state }}
@@ -35,17 +54,29 @@
 
     <fieldset>
       <label for="">Zip Code*</label>
-      <input type="text" formControlName="zipCode" />
+      <input
+        type="text"
+        formControlName="zipCode"
+        [class.error]="zipCode?.invalid && zipCode?.touched"
+      />
     </fieldset>
 
     <fieldset>
       <label for="">Email*</label>
-      <input type="text" formControlName="email" />
+      <input
+        type="text"
+        formControlName="email"
+        [class.error]="email?.invalid && email?.touched"
+      />
     </fieldset>
 
     <fieldset>
       <label for="">Phone*</label>
-      <input type="text" formControlName="phone" />
+      <input
+        type="text"
+        formControlName="phone"
+        [class.error]="phone?.invalid && phone?.touched"
+      />
     </fieldset>
 
     <div class="btn-container">

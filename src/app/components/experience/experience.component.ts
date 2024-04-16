@@ -13,7 +13,6 @@ import { StorageService } from '../../services/storage.service';
 import { StatesService } from '../../services/states.service';
 import { DividerComponent } from '../divider/divider.component';
 
-
 @Component({
   selector: 'app-experience',
   standalone: true,
@@ -57,13 +56,15 @@ export class ExperienceComponent {
   }
 
   addWorkExperience() {
-    this.showForm.update((prev) => !prev);
-
     if (this.form.valid) {
       const experience = this.getAllFormFields();
       this.workExperiences.update((prev) => [...prev, experience]);
       this.storageServ.setStorage(this.storageVariable, this.workExperiences());
+      this.showForm.update((prev) => !prev);
+
+      return;
     }
+    this.form.markAllAsTouched();
   }
 
   deleteWorkExperience(id: string) {
@@ -100,5 +101,50 @@ export class ExperienceComponent {
     };
 
     return experience;
+  }
+
+  // getters
+  get position() {
+    return this.form.get('position');
+  }
+
+  get organization() {
+    return this.form.get('organization');
+  }
+
+  get address() {
+    return this.form.get('address');
+  }
+
+  get city() {
+    return this.form.get('city');
+  }
+
+  get state() {
+    return this.form.get('state');
+  }
+
+  get zipCode() {
+    return this.form.get('zipCode');
+  }
+
+  get startDate() {
+    return this.form.get('startDate');
+  }
+
+  get endDate() {
+    return this.form.get('endDate');
+  }
+
+  get hours() {
+    return this.form.get('hours');
+  }
+
+  get salary() {
+    return this.form.get('salary');
+  }
+
+  get skills() {
+    return this.form.get('skills');
   }
 }

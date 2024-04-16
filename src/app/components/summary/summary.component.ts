@@ -3,7 +3,7 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Summary } from '../../interfaces/interfaces';
 import { BtnComponent } from '../btn/btn.component';
 import { DividerComponent } from '../divider/divider.component';
@@ -29,7 +29,7 @@ export class SummaryComponent {
   storageServ = inject(StorageService);
 
   summaryForm = new FormGroup({
-    summary: new FormControl(''),
+    summary: new FormControl('',),
   });
 
   saveSummary() {

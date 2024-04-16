@@ -53,14 +53,16 @@ export class ReferencesComponent {
   }
 
   addReference() {
-    this.toggleForm();
-
-    if (this.form.valid) {
-      const reference = this.getAllFormFields();
-      this.references.update((prev) => [...prev, reference]);
-      this.storageServ.setStorage(this.storageVariable, this.references());
-      this.form.reset();
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
     }
+
+    const reference = this.getAllFormFields();
+    this.references.update((prev) => [...prev, reference]);
+    this.storageServ.setStorage(this.storageVariable, this.references());
+    this.toggleForm();
+    this.form.reset();
   }
 
   deleteReference(id: string) {
@@ -93,16 +95,41 @@ export class ReferencesComponent {
   }
 
   updateReference() {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
     const index = this.references().findIndex(
       (edu) => edu.id === this.referenceToEdit()?.id,
     );
 
     const reference = this.getAllFormFields();
-
     this.references()[index] = reference;
     this.storageServ.setStorage(this.storageVariable, this.references());
     this.setNull();
     this.toggleForm();
     this.form.reset();
+  }
+
+  // getters
+  get name() {
+    return this.form.get('name');
+  }
+
+  get employer() {
+    return this.form.get('employer');
+  }
+
+  get title() {
+    return this.form.get('title');
+  }
+
+  get phone() {
+    return this.form.get('phone');
+  }
+
+  get email() {
+    return this.form.get('email');
   }
 }

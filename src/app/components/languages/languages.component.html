@@ -1,4 +1,4 @@
-<main  [attr.data-html2canvas-ignore]="languages().length >= 1 ? null : ''">
+<main [attr.data-html2canvas-ignore]="languages().length >= 1 ? null : ''">
   <app-btn (onClick)="toggleForm()">add languages</app-btn>
 
   @if (showForm()) {
@@ -10,12 +10,19 @@
     >
       <fieldset>
         <label for="language">language*</label>
-        <input type="text" formControlName="language" />
+        <input
+          type="text"
+          formControlName="language"
+          [class.error]="language?.invalid && language?.touched"
+        />
       </fieldset>
 
       <fieldset>
         <label for="spoken">spoken*</label>
-        <select formControlName="spoken">
+        <select
+          formControlName="spoken"
+          [class.error]="spoken?.invalid && spoken?.touched"
+        >
           @for (level of levels; track level) {
             <option [value]="level">
               {{ level }}
@@ -26,7 +33,10 @@
 
       <fieldset>
         <label for="read">read*</label>
-        <select formControlName="read">
+        <select
+          formControlName="read"
+          [class.error]="read?.invalid && read?.touched"
+        >
           @for (level of levels; track level) {
             <option [value]="level">
               {{ level }}
@@ -37,7 +47,10 @@
 
       <fieldset>
         <label for="written">written*</label>
-        <select formControlName="written">
+        <select
+          formControlName="written"
+          [class.error]="written?.invalid && written?.touched"
+        >
           @for (level of levels; track level) {
             <option [value]="level">
               {{ level }}
@@ -116,12 +129,19 @@
     <form [formGroup]="form" class="update-form">
       <fieldset>
         <label for="language">language*</label>
-        <input type="text" formControlName="language" />
+        <input
+          type="text"
+          formControlName="language"
+          [class.error]="language?.invalid && language?.touched"
+        />
       </fieldset>
 
       <fieldset>
         <label for="spoken">spoken*</label>
-        <select formControlName="spoken">
+        <select
+          formControlName="spoken"
+          [class.error]="spoken?.invalid && spoken?.touched"
+        >
           @for (level of levels; track level) {
             <option [value]="level">
               {{ level }}
@@ -132,7 +152,10 @@
 
       <fieldset>
         <label for="read">read*</label>
-        <select formControlName="read">
+        <select
+          formControlName="read"
+          [class.error]="read?.invalid && read?.touched"
+        >
           @for (level of levels; track level) {
             <option [value]="level">
               {{ level }}
@@ -143,7 +166,10 @@
 
       <fieldset>
         <label for="written">written*</label>
-        <select formControlName="written">
+        <select
+          formControlName="written"
+          [class.error]="written?.invalid && written?.touched"
+        >
           @for (level of levels; track level) {
             <option [value]="level">
               {{ level }}

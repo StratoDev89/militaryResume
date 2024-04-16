@@ -13,7 +13,7 @@ import { StatesService } from '../../services/states.service';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [ReactiveFormsModule, FormComponent, BtnComponent, ],
+  imports: [ReactiveFormsModule, FormComponent, BtnComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
@@ -46,7 +46,10 @@ export class HeaderComponent {
       };
 
       localStorage.setItem('header', JSON.stringify(this.headerFormInfo));
+      return;
     }
+
+    this.form.markAllAsTouched();
   }
 
   ngOnInit() {
@@ -58,14 +61,36 @@ export class HeaderComponent {
     }
   }
 
-  // baseFormContent : BaseForm = {
-  //   firstName:'daniel',
-  //   lastName:'pacheco',
-  //   street: 'calle gritaldot',
-  //   city:'El tigre',
-  //   state: 'anzoategui',
-  //   zipCode: '123123',
-  //   email: 'daniel@gmail.com',
-  //   phone: '123123123',
-  // }
+  // getters
+  get firstName() {
+    return this.form.get('firstName');
+  }
+
+  get lastName() {
+    return this.form.get('lastName');
+  }
+
+  get street() {
+    return this.form.get('street');
+  }
+
+  get city() {
+    return this.form.get('city');
+  }
+
+  get state() {
+    return this.form.get('state');
+  }
+
+  get zipCode() {
+    return this.form.get('zipCode');
+  }
+
+  get email() {
+    return this.form.get('email');
+  }
+
+  get phone() {
+    return this.form.get('phone');
+  }
 }
