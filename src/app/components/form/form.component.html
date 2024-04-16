@@ -8,7 +8,10 @@
       <h3>
         {{ headerFormInfo.street }} {{ headerFormInfo.city }},
         {{ headerFormInfo.state }} {{ headerFormInfo.zipCode }} |
-        {{ headerFormInfo.phone }} | {{ headerFormInfo.email }}
+        {{ headerFormInfo.phone }} |
+        <span style="text-transform: lowercase">
+          {{ headerFormInfo.email }}
+        </span>
       </h3>
     </header>
   </section>

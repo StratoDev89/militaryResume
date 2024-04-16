@@ -31,7 +31,7 @@ export class HeaderComponent {
     city: new FormControl('', [Validators.required]),
     state: new FormControl('', [Validators.required]),
     zipCode: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     phone: new FormControl('', [Validators.required]),
   });
 
