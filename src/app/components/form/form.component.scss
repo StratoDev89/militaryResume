@@ -16,13 +16,15 @@ main {
       }
 
       hr {
-        height: 3px;
+        height: 2px;
         background-color: black;
         width: 100%;
+
       }
 
       h3 {
         text-transform: capitalize;
+        font-weight: 500;
       }
     }
   }
