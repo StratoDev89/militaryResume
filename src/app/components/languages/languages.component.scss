@@ -2,17 +2,23 @@ main {
   width: 100%;
 
   .education-form {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 0.5rem;
+
+    fieldset {
+      flex-grow: 1;
+      min-width: 10rem;
+    }
 
     fieldset:nth-child(1) {
       width: 100%;
-      grid-column: 1 / span 3;
+      flex-grow: 1;
     }
 
     .btn-container {
-      grid-column: 1 / span 3;
+      margin-top: 0.5rem;
+      width: 100%;
     }
   }
 }

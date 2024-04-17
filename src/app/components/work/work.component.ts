@@ -33,7 +33,7 @@ export class WorkComponent {
 
   workUpdated = signal<WorkExperience | null>(null);
 
-  isEdition = signal(true);
+  isEdition = signal(false);
 
   form = new FormGroup({
     position: new FormControl(),

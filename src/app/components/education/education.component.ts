@@ -10,11 +10,12 @@ import { StorageService } from '../../services/storage.service';
 import { UuidService } from '../../services/uuid.service';
 import { BtnComponent } from '../btn/btn.component';
 import { DividerComponent } from '../divider/divider.component';
+import { SmallDividerComponent } from '../small-divider/small-divider.component';
 
 @Component({
   selector: 'app-education',
   standalone: true,
-  imports: [ReactiveFormsModule, BtnComponent, DividerComponent],
+  imports: [ReactiveFormsModule, BtnComponent, DividerComponent, SmallDividerComponent],
   templateUrl: './education.component.html',
   styleUrl: './education.component.scss',
 })
