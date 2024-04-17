@@ -82,6 +82,8 @@ export class PdfService {
         0,
         210,
         imgHeight1,
+        undefined,
+        'FAST',
       );
 
       if (firstPageComplete) {
@@ -93,6 +95,8 @@ export class PdfService {
           0,
           210,
           imgHeight2,
+          undefined,
+          'FAST',
         );
       }
 
@@ -106,6 +110,8 @@ export class PdfService {
           0,
           210,
           imgHeight3,
+          undefined,
+          'FAST',
         );
       }
 

@@ -1,25 +1,13 @@
 main {
   width: 100%;
 
-  .education-form {
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: 0.5rem;
-
-    fieldset {
-      flex-grow: 1;
-      min-width: 10rem;
-    }
-
-    fieldset:nth-child(1) {
-      width: 100%;
-      flex-grow: 1;
-    }
-
-    .btn-container {
-      margin-top: 0.5rem;
-      width: 100%;
-    }
+  fieldset {
+    min-width: 10rem;
+  }
+  
+  .btn-container {
+    margin-top: 0.5rem;
+    width: 100%;
   }
 }
 
@@ -65,7 +53,6 @@ table {
     text-align: end;
   }
 }
-
 
 .update-container {
   position: fixed;
