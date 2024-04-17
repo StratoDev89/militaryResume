@@ -7,8 +7,12 @@
   </p>
   <p>
     <strong>Dates:</strong> {{ work.startDate | date: "shortDate" : "UTC" }} -
-    {{ work.endDate | date: "shortDate" : "UTC" }} |
-    <strong>Salary:</strong> ${{ work.salary }} -
+    {{
+      work.endDate === "Current"
+        ? work.endDate
+        : (work.endDate | date: "shortDate" : "UTC")
+    }}
+    | <strong>Salary:</strong> ${{ work.salary }} -
     <strong>Works per week: </strong>{{ work.hours }}
   </p>
   <p class="skills">
@@ -131,14 +135,13 @@
       </fieldset>
 
       <fieldset
-        style="grid-column: span 4; grid-column-start: 1; grid-column-end: -1"
-      >
+       >
         <label for="skills">Related Skills</label>
         <textarea
           name="skills"
           id=""
           cols="30"
-          rows="10"
+          rows="5"
           [value]="work.skills"
           formControlName="skills"
           [class.error]="skills?.invalid && skills?.touched"
@@ -154,3 +157,4 @@
     </form>
   </div>
 }
+<!-- style="grid-column: span 3" -->

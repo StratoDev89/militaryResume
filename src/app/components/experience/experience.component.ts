@@ -21,24 +21,35 @@ import { DividerComponent } from '../divider/divider.component';
   styleUrl: './experience.component.scss',
 })
 export class ExperienceComponent {
+  // servs
   uuidService = inject(UuidService);
   storageServ = inject(StorageService);
+
+  // props
   states = inject(StatesService).getStates();
   showForm = signal(false);
   storageVariable = 'workExperience';
   workExperiences = signal<WorkExperience[]>([]);
-
   form = new FormGroup({
     position: new FormControl('', [Validators.required]),
     organization: new FormControl('', [Validators.required]),
     address: new FormControl('', [Validators.required]),
     city: new FormControl('', [Validators.required]),
     state: new FormControl('', [Validators.required]),
-    zipCode: new FormControl('', [Validators.required, Validators.pattern(/^\d+$/)]),
-    startDate: new FormControl('', [Validators.required, ]),
-    endDate: new FormControl('', [Validators.required]),
-    hours: new FormControl('', [Validators.required, Validators.pattern(/^\d+$/)]),
-    salary: new FormControl('', [Validators.required, Validators.pattern(/^\d+$/)]),
+    zipCode: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^\d+$/),
+    ]),
+    startDate: new FormControl('', [Validators.required]),
+    endDate: new FormControl('', []),
+    hours: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^\d+$/),
+    ]),
+    salary: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^\d+$/),
+    ]),
     skills: new FormControl('', [Validators.required]),
   });
 
@@ -51,11 +62,15 @@ export class ExperienceComponent {
     }
   }
 
+  // toggles
   toggleForm() {
     this.showForm.update((prev) => !prev);
   }
 
+  // CRUD
   addWorkExperience() {
+
+
     if (this.form.valid) {
       const experience = this.getAllFormFields();
       this.workExperiences.update((prev) => [...prev, experience]);
@@ -84,6 +99,7 @@ export class ExperienceComponent {
     this.storageServ.setStorage(this.storageVariable, this.workExperiences());
   }
 
+  // getters
   getAllFormFields() {
     const experience = {
       id: this.uuidService.uuidv4,
@@ -94,7 +110,9 @@ export class ExperienceComponent {
       state: this.form.get('state')?.value!,
       zipCode: this.form.get('zipCode')?.value!,
       startDate: new Date(this.form.get('startDate')?.value!),
-      endDate: new Date(this.form.get('endDate')?.value!),
+      endDate: this.form.get('endDate')?.value
+        ? new Date(this.form.get('endDate')?.value!)
+        : 'Current',
       hours: this.form.get('hours')?.value!,
       salary: this.form.get('salary')?.value!,
       skills: this.form.get('skills')?.value!,
@@ -103,7 +121,6 @@ export class ExperienceComponent {
     return experience;
   }
 
-  // getters
   get position() {
     return this.form.get('position');
   }

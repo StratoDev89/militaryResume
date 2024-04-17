@@ -6,7 +6,7 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { WorkExperience, FormField } from '../../interfaces/interfaces';
+import { WorkExperience } from '../../interfaces/interfaces';
 import { BtnComponent } from '../btn/btn.component';
 import {
   FormControl,
@@ -33,7 +33,7 @@ export class WorkComponent {
 
   workUpdated = signal<WorkExperience | null>(null);
 
-  isEdition = signal(false);
+  isEdition = signal(true);
 
   form = new FormGroup({
     position: new FormControl(),
@@ -43,7 +43,7 @@ export class WorkComponent {
     state: new FormControl('', [Validators.required]),
     zipCode: new FormControl('', [Validators.required]),
     startDate: new FormControl<Date | null>(null, [Validators.required]),
-    endDate: new FormControl<Date | null>(null, [Validators.required]),
+    endDate: new FormControl<Date | null | string>(null, []),
     hours: new FormControl('', [Validators.required]),
     salary: new FormControl('', [Validators.required]),
     skills: new FormControl('', [Validators.required]),
@@ -60,27 +60,30 @@ export class WorkComponent {
   updateWork() {
     this.editToggle();
 
-    const workUpdated: WorkExperience = {
+    const experience = this.getAllFormFields();
+
+    this.updateClick.emit(experience);
+  }
+
+  getAllFormFields() {
+    const experience = {
       id: this.work.id,
-      position: '',
-      organization: '',
-      address: '',
-      city: '',
-      state: '',
-      zipCode: '',
-      startDate: this.work.startDate,
-      endDate: this.work.endDate,
-      hours: '',
-      salary: '',
-      skills: '',
+      position: this.form.get('position')?.value!,
+      organization: this.form.get('organization')?.value!,
+      address: this.form.get('address')?.value!,
+      city: this.form.get('city')?.value!,
+      state: this.form.get('state')?.value!,
+      zipCode: this.form.get('zipCode')?.value!,
+      startDate: new Date(this.form.get('startDate')?.value!),
+      endDate: this.form.get('endDate')?.value
+        ? new Date(this.form.get('endDate')?.value!)
+        : 'Current',
+      hours: this.form.get('hours')?.value!,
+      salary: this.form.get('salary')?.value!,
+      skills: this.form.get('skills')?.value!,
     };
 
-    Object.keys(this.form.controls).forEach((control) => {
-      workUpdated[control as keyof WorkExperience] =
-        this.form.get(control)?.value;
-    });
-
-    this.updateClick.emit(workUpdated);
+    return experience;
   }
 
   deleteWorkExperience(id: string) {

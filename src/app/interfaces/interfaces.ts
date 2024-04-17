@@ -20,7 +20,7 @@ export interface WorkExperience {
   state: string;
   zipCode: string;
   startDate: Date;
-  endDate: Date;
+  endDate: Date | string;
   hours: string;
   salary: string;
   skills: string;
