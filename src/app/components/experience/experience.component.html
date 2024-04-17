@@ -67,7 +67,7 @@
         <fieldset>
           <label for="zipCode">zip Code*</label>
           <input
-            type="text"
+            type="number"
             formControlName="zipCode"
             [class.error]="zipCode?.invalid && zipCode?.touched"
           />
@@ -96,7 +96,7 @@
         <fieldset>
           <label for="hours">hours per week*</label>
           <input
-            type="text"
+            type="number"
             formControlName="hours"
             [class.error]="hours?.invalid && hours?.touched"
           />
@@ -105,7 +105,7 @@
         <fieldset>
           <label for="salary">salary*</label>
           <input
-            type="text"
+            type="number"
             formControlName="salary"
             [class.error]="salary?.invalid && salary?.touched"
           />
@@ -121,6 +121,8 @@
           rows="10"
           formControlName="skills"
           [class.error]="skills?.invalid && skills?.touched"
+          maxlength="450"
+          placeholder="Up to 450 characters..."
         ></textarea>
       </fieldset>
 

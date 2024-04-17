@@ -34,11 +34,11 @@ export class ExperienceComponent {
     address: new FormControl('', [Validators.required]),
     city: new FormControl('', [Validators.required]),
     state: new FormControl('', [Validators.required]),
-    zipCode: new FormControl('', [Validators.required]),
-    startDate: new FormControl('', [Validators.required]),
+    zipCode: new FormControl('', [Validators.required, Validators.pattern(/^\d+$/)]),
+    startDate: new FormControl('', [Validators.required, ]),
     endDate: new FormControl('', [Validators.required]),
-    hours: new FormControl('', [Validators.required]),
-    salary: new FormControl('', [Validators.required]),
+    hours: new FormControl('', [Validators.required, Validators.pattern(/^\d+$/)]),
+    salary: new FormControl('', [Validators.required, Validators.pattern(/^\d+$/)]),
     skills: new FormControl('', [Validators.required]),
   });
 

@@ -33,7 +33,8 @@
       <fieldset>
         <label for="yearGraduated">year graduated*</label>
         <input
-          type="text"
+          type="number"
+          maxlength="4"
           formControlName="yearGraduated"
           [class.error]="yearGraduated?.invalid && yearGraduated?.touched"
         />
@@ -142,7 +143,8 @@
       <fieldset>
         <label for="yearGraduated">year graduated*</label>
         <input
-          type="text"
+          type="number"
+          maxlength="4"
           formControlName="yearGraduated"
           [class.error]="yearGraduated?.invalid && yearGraduated?.touched"
         />
